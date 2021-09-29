@@ -8,7 +8,9 @@ module.exports = mongoose => {
             email:String,
             dateCreated:Date,
             birthday:Date,
-            location:String
+            location:String,
+            posts:Array,
+            comments:Array
         },
         { timestamps:false }
     );
