@@ -18,3 +18,21 @@ html * {
     padding: 8px;
     cursor: pointer;
 }
+
+/* Error icon */
+.msg-error::before {
+    content: '\2573 ';
+    color: white;
+    padding-right: 10px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.msg-error {
+    border-style: solid;
+    background-color: indianred;
+    padding: 10px;
+    border-width: thin;
+    border-radius: 10px;
+    font-size: 20px;
+}

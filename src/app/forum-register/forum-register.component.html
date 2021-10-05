@@ -1,5 +1,8 @@
 <div>
     <h1 class="page-title">Register</h1>
+    <div class="msg-error" *ngIf="showError">
+        {{errorText}}
+    </div>
     <form #registerRef="ngForm" (ngSubmit)="sendInfo(registerRef)">
         <div>
             <dl>
@@ -7,7 +10,7 @@
                     <label>Email</label>
                 </dt>
                 <dd>
-                    <input type="email" name="email">
+                    <input type="email" name="email" ngModel>
                 </dd>
             </dl>
             <dl>
@@ -15,7 +18,7 @@
                     <label>Date of Birth</label>
                 </dt>
                 <dd>
-                    <input type="date" name="dob">
+                    <input type="date" name="dob" ngModel>
                 </dd>
             </dl>
             <dl>
@@ -23,7 +26,7 @@
                     <label>Username</label>
                 </dt>
                 <dd>
-                    <input type="text" name="username">
+                    <input type="text" name="username" ngModel>
                 </dd>
             </dl>
             <dl>
@@ -31,7 +34,7 @@
                     <label>Password</label>
                 </dt>
                 <dd>
-                    <input type="password" name="password">
+                    <input type="password" name="password" ngModel>
                 </dd>
             </dl>
             <dl>
@@ -39,10 +42,10 @@
                     <label>Confirm Password</label>
                 </dt>
                 <dd>
-                    <input type="password" name="repassword">
+                    <input type="password" name="repassword" ngModel>
                 </dd>
             </dl>
-            <input type="checkbox" id="terms" name="agreedToTerms">
+            <input type="checkbox" id="terms" name="agreedToTerms" ngModel>
             <label for="terms">I agree to the terms and conditions</label>
         </div>
         <br><br>

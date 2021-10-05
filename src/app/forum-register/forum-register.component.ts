@@ -11,14 +11,52 @@ import { GlobalVariables } from '../common/global-variables';
 })
 export class ForumRegisterComponent implements OnInit {
 
+  errorText:string = "";
+  showError:boolean = false;
+
   constructor(private titleService:Title, private userService:UserService, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.globals.websiteTitle+" - Register");
   }
 
-  sendInfo(registerRef:NgForm): void {
+  // Shows an error on the screen. If nothing is input, the error hides
+  displayError(text?:string): void {
+    if (text != null) {
+      this.errorText = text;
+      this.showError = true;
+    }
+    else {
+      this.errorText = "";
+      this.showError = false;
+    }
+  }
 
+  sendInfo(registerRef:NgForm): void {
+    let registerForm = registerRef.value;
+
+    // First validate the form
+    if (registerForm.email === "") {
+      this.displayError("Email required.");
+    }
+    else if (registerForm.dob === "") {
+      this.displayError("Date of Birth required.");
+    }
+    else if (registerForm.username === "") {
+      this.displayError("Username required.");
+    }
+    else if (registerForm.password === "") {
+      this.displayError("Password required.");
+    }
+    else if (registerForm.password != registerForm.repassword) {
+      this.displayError("Passwords do not match.");
+    }
+    else if (!registerForm.agreedToTerms) {
+      this.displayError("You must agree to the terms and conditions.");
+    }
+    else {
+      this.displayError();
+    }
   }
 
 }
