@@ -5,9 +5,25 @@ html * {
 
 .page-title {
     font-weight: 600;
+    font-size: 25px;
 }
 
 .page-padding {
     padding-left: 20%;
     padding-right: 20%;
+}
+
+.nav-bar {
+    border-style: groove;
+}
+
+.btn-primary {
+    background-color: midnightblue;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    border-radius: 5px;
+    border-style: hidden;
+    padding: 8px;
+    cursor: pointer;
 }

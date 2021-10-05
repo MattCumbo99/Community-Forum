@@ -1,0 +1,11 @@
+.btn-forgot-password {
+    border-style: none;
+    background-color: transparent;
+    padding-left: 0px;
+    cursor: pointer;
+}
+
+.btn-forgot-password:hover {
+    color: cornflowerblue;
+    text-decoration: underline;
+}

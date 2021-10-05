@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { ForumHomeComponent } from './forum-home/forum-home.component';
 import { ForumLoginComponent } from './forum-login/forum-login.component';
 import { ForumRegisterComponent } from './forum-register/forum-register.component';
+import { ForumMembersComponent } from './forum-members/forum-members.component';
+import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForumHomeComponent,
     ForumLoginComponent,
-    ForumRegisterComponent
+    ForumRegisterComponent,
+    ForumMembersComponent,
+    ForumNotfoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,18 @@
-<div class="page-padding">
-  <div style="text-align: right;">
-    <input type="button" value="Log in" routerLink="/login">
+<div>
+  <div class="btn-position">
+    <input type="button" class="btn-login" value="Log in" routerLink="/login">
     &nbsp;
-    <input type="button" value="Register" routerLink="/register">
+    <input type="button" class="btn-register" value="Register" routerLink="/register">
   </div>
+  <hr>
   <div>
     <nav>
       <a routerLink="">Home</a>
+      <a routerLink="/members">Members</a>
     </nav>
   </div>
-  <div>
+  <hr>
+  <div class="page-padding">
     <router-outlet></router-outlet>
   </div>
 </div>

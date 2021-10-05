@@ -1,15 +1,25 @@
 <div>
-    <h1>Log in</h1>
-    <form>
-        <label>Username:</label>
-        <input type="text" name="username">
-        <br>
-        <label>Password:</label>
-        <input type="password" name="password">
-        <br>
-        <input type="button" value="Forgot your password?">
-        <br><br>
-        <input type="submit" value="Log in">
+    <h1 class="page-title">Log in</h1>
+    <form action="/login" method="POST">
+        <div>
+            <dl>
+                <dt>
+                    <label>Username</label>
+                </dt>
+                <dd>
+                    <input type="text" name="username">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Password</label>
+                </dt>
+                <dd>
+                    <input type="password" name="password">
+                </dd>
+            </dl>
+        </div>
+        <input type="submit" value="Log in" class="btn-primary">
     </form>
     <hr>
     <div>

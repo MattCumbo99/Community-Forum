@@ -1,0 +1,39 @@
+.btn-login {
+    cursor: pointer;
+    border-style: none;
+    background-color: transparent;
+    color: indianred;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-register {
+    cursor: pointer;
+    color: white;
+    background-color: indianred;
+    font-weight: bold;
+    font-size: 20px;
+    border-style: none;
+    border-radius: 5px;
+}
+
+nav {
+    padding: 10px;
+    padding-left: 20%;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color:rgb(40, 40, 40);
+    padding-right: 2%;
+}
+
+nav a:hover {
+    color: blue;
+}
+
+.btn-position {
+    text-align: right;
+    padding-right: 20%;
+}
