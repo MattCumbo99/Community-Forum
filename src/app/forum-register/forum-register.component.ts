@@ -55,7 +55,30 @@ export class ForumRegisterComponent implements OnInit {
       this.displayError("You must agree to the terms and conditions.");
     }
     else {
-      this.displayError();
+      // Test if the username is taken
+      this.userService.getUser(registerForm.username).subscribe(data=> {
+        // User exists
+        if (!data) {
+          // Make a new object to save the user as
+          const newUser = {username:registerForm.username, password:registerForm.password, 
+            email:registerForm.email, birthday:registerForm.dob};
+
+            // Attempt to save the user
+            this.userService.registerUser(newUser).subscribe(response=> {
+              this.displayError();
+              alert("Registration successful");
+            },
+            error=> {
+              console.log(error);
+            });
+        }
+        else {
+          this.displayError("Username already exists.");
+        }
+      },
+      error=> {
+        alert("Error!");
+      });
     }
   }
 

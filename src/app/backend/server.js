@@ -11,7 +11,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-const db = require("./app/models");
+const db = require("./models");
 // Connect to the database
 db.mongoose
     .connect(db.url, {
@@ -27,7 +27,7 @@ db.mongoose
     });
 
 // All database routers
-//require("./app/routers")(app);
+require("./routers/user.router")(app);
 
 app.listen(9090, ()=> {
     console.log("Server running on port 9090.");
