@@ -8,15 +8,6 @@ html * {
     font-size: 25px;
 }
 
-.page-padding {
-    padding-left: 20%;
-    padding-right: 20%;
-}
-
-.nav-bar {
-    border-style: groove;
-}
-
 .btn-primary {
     background-color: midnightblue;
     font-weight: bold;

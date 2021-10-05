@@ -15,6 +15,7 @@ exports.register = (request,response)=> {
         comments: []
     });
 
+    // Save the user in the database
     user.save(user)
     .then(data=> {
         response.send(data);
@@ -24,5 +25,19 @@ exports.register = (request,response)=> {
             message:
                 err.message || "Some error occurred registering the user"
         });
+    });
+};
+
+exports.findOne = (request,response)=> {
+    const id = request.params.id;
+
+    // Look through the database for the user with the corresponding username
+    User.find({username:id}).then(data=> {
+        if (!data) 
+            response.status(404).send({message:"No user was found with the username of " + id});
+        else response.send(data);
+    })
+    .catch(err=> {
+        response.status(500).send({message:err});
     });
 };
