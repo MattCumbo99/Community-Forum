@@ -1,13 +1,16 @@
 <div>
     <h1 class="page-title">Log in</h1>
-    <form action="/login" method="POST">
+    <div class="msg-error" *ngIf="showError">
+        {{errorText}}
+    </div>
+    <form #loginRef="ngForm" (ngSubmit)="checkUser(loginRef)">
         <div>
             <dl>
                 <dt>
                     <label>Username</label>
                 </dt>
                 <dd>
-                    <input type="text" name="username">
+                    <input type="text" name="username" ngModel>
                 </dd>
             </dl>
             <dl>
@@ -15,13 +18,13 @@
                     <label>Password</label>
                 </dt>
                 <dd>
-                    <input type="password" name="password">
+                    <input type="password" name="password" ngModel>
                     <br>
                     <button class="btn-forgot-password">Forgot your password?</button>
                 </dd>
             </dl>
         </div>
-        <input type="submit" value="Log in" class="btn-primary">
+        <button type="submit" class="btn-primary">Log in</button>
     </form>
     <hr>
     <div>
