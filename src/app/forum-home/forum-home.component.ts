@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { GlobalVariables } from '../common/global-variables';
 
 @Component({
   selector: 'app-forum-home',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService:Title, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.globals.websiteTitle);
   }
 
 }

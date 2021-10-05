@@ -8,6 +8,7 @@ import { ForumLoginComponent } from './forum-login/forum-login.component';
 import { ForumRegisterComponent } from './forum-register/forum-register.component';
 import { ForumMembersComponent } from './forum-members/forum-members.component';
 import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
+import { GlobalVariables } from './common/global-variables';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.componen
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GlobalVariables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,24 +1,51 @@
 <div>
     <h1 class="page-title">Register</h1>
-    <form>
-        <label>Email:</label>
-        <input type="text" name="email">
-        <br>
-        <label>Date of Birth:</label>
-        <input type="date" name="dob">
-        <br>
-        <label>Username:</label>
-        <input type="text" name="username">
-        <br>
-        <label>Password:</label>
-        <input type="password" name="password">
-        <br>
-        <label>Confirm Password:</label>
-        <input type="password" name="repassword">
+    <form action="/register" method="POST">
+        <div>
+            <dl>
+                <dt>
+                    <label>Email</label>
+                </dt>
+                <dd>
+                    <input type="email" name="email">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Date of Birth</label>
+                </dt>
+                <dd>
+                    <input type="date" name="dob">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Username</label>
+                </dt>
+                <dd>
+                    <input type="text" name="username">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Password</label>
+                </dt>
+                <dd>
+                    <input type="password" name="password">
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Confirm Password</label>
+                </dt>
+                <dd>
+                    <input type="password" name="repassword">
+                </dd>
+            </dl>
+            <input type="checkbox" id="terms" name="agreedToTerms">
+            <label for="terms">I agree to the terms and conditions</label>
+        </div>
         <br><br>
-        <input type="checkbox" id="terms" name="agreedToTerms">
-        <label for="terms">I agree to the terms and conditions</label>
-        <br><br><br>
-        <input type="submit" value="Register">
+        <input type="submit" class="btn-primary" value="Register">
     </form>
 </div>

@@ -1,13 +1,14 @@
 <div>
   <div class="btn-position">
-    <input type="button" class="btn-login" value="Log in" routerLink="/login">
+    <button (click)="onLogin=true; onRegister=false;" *ngIf="!onLogin" class="btn-login" routerLink="/login">Log in</button>
     &nbsp;
-    <input type="button" class="btn-register" value="Register" routerLink="/register">
+    <button (click)="onLogin=false; onRegister=true;" *ngIf="!onRegister" class="btn-register" routerLink="/register">Register</button>
   </div>
   <hr>
   <div>
-    <nav>
+    <nav (click)="onLogin=false; onRegister=false;">
       <a routerLink="">Home</a>
+      &nbsp;
       <a routerLink="/members">Members</a>
     </nav>
   </div>

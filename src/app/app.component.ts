@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Community-Forum';
+  onRegister:boolean = false;
+  onLogin:boolean = false;
 }
