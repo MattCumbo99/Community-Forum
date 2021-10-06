@@ -22,7 +22,7 @@
                 <tr *ngFor="let user of members">
                     <td>{{user.username}}</td>
                     <td>{{user.dateCreated | date}}</td>
-                    <td>{{getRoleName(user.privilege)}}</td>
+                    <td [ngClass]="{'role-moderator':user.privilege==253, 'role-admin':user.privilege==254, 'role-head-admin':user.privilege==255}">{{getRoleName(user.privilege)}}</td>
                     <td style="text-align: center;">{{user.posts?.length || '0'}}</td>
                     <td style="text-align: center;">{{user.comments?.length || '0'}}</td>
                 </tr>
