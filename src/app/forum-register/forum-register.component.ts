@@ -57,7 +57,7 @@ export class ForumRegisterComponent implements OnInit {
     else {
       // Test if the username is taken
       this.userService.getUser(registerForm.username).subscribe(data=> {
-        // User exists
+        // Username is not taken, register
         if (!data) {
           // Make a new object to save the user as
           const newUser = {username:registerForm.username, password:registerForm.password, 

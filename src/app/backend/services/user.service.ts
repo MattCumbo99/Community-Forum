@@ -26,4 +26,9 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}`);
   }
+
+  // Checks for correct login information
+  getUserFromLogin(username:string, password:string): Observable<User> {
+    return this.http.get<User>(`${baseUrl}/login/${username}/${password}`);
+  }
 }

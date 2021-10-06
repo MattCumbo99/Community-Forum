@@ -2,10 +2,12 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 const User = db.users;
 
+const saltRounds = 10;
+
 exports.register = (request,response)=> {
     // Encrypt the password
     let truePass = "";
-    bcrypt.genSalt(10, function(saltError,salt) {
+    bcrypt.genSalt(saltRounds, function(saltError,salt) {
         if (saltError) {
             throw saltError;
         } else {
@@ -42,6 +44,27 @@ exports.register = (request,response)=> {
                 }
             });
         }
+    });
+};
+
+exports.grabLogin = (request,response)=> {
+    const username = request.params.username;
+    const pass = request.params.password;
+
+    // Look through the database for the user with the corresponding password
+    User.findOne({username:username}).then(data=> {
+        // Compare hashed functions
+        bcrypt.compare(pass, data.password, function(err,result) {
+            if (result) {
+                response.send(data);
+            }
+            else {
+                response.send(null);
+            }
+        });
+    })
+    .catch(err=> {
+        response.status(500).send({message:err});
     });
 };
 
