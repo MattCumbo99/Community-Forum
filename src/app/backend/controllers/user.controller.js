@@ -52,7 +52,7 @@ exports.grabLogin = (request,response)=> {
     const pass = request.params.password;
 
     // Look through the database for the user with the corresponding password
-    User.findOne({username:username}).then(data=> {
+    User.findOne({username:username}).collation({locale:'en', strength:2}).then(data=> {
         // Compare hashed functions
         bcrypt.compare(pass, data.password, function(err,result) {
             if (result) {
@@ -72,7 +72,7 @@ exports.findOne = (request,response)=> {
     const id = request.params.id;
 
     // Look through the database for the user with the corresponding username
-    User.findOne({username:id}).then(data=> {
+    User.findOne({username:id}).collation({locale:'en', strength:2}).then(data=> {
         response.send(data);
     })
     .catch(err=> {
