@@ -1,0 +1,11 @@
+<div *ngIf="userProfile.username!==''">
+    <!--User profile details here-->
+    <div class="profile-block">
+        Sample user
+    </div>
+</div>
+<!--Invalid user url-->
+<div *ngIf="userProfile.username===''">
+    <h2 class="page-title">Oh no! We ran into some issues.</h2>
+    <div>The requested user does not exist.</div>
+</div>

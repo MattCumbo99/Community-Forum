@@ -12,6 +12,7 @@ import { ForumRegisterComponent } from './forum-register/forum-register.componen
 import { ForumMembersComponent } from './forum-members/forum-members.component';
 import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
 import { GlobalVariables } from './common/global-variables';
+import { ForumProfileComponent } from './forum-profile/forum-profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GlobalVariables } from './common/global-variables';
     ForumLoginComponent,
     ForumRegisterComponent,
     ForumMembersComponent,
-    ForumNotfoundComponent
+    ForumNotfoundComponent,
+    ForumProfileComponent
   ],
   imports: [
     HttpClientModule,

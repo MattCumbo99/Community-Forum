@@ -1,6 +1,6 @@
 <div>
   <div *ngIf="currentUser.username!==''" style="text-align: right; padding-right: 20%;">
-    {{currentUser.username}}
+    <button (click)="nameClick()" class="label-username">{{currentUser.username}}</button>
     &nbsp;
     <button (click)="logoutUser()">Log out</button>
   </div>

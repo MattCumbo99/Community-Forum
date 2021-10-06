@@ -35,6 +35,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // Function for when the user clicks their name
+  nameClick(): void {
+    this.router.navigateByUrl("/members/"+this.currentUser.username).then(()=> {
+      window.location.reload();
+    });
+  }
+
   // Logout button function
   logoutUser(): void {
     window.localStorage.removeItem('forum_login');

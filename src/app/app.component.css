@@ -7,6 +7,18 @@
     font-size: 20px;
 }
 
+.label-username:hover {
+    cursor: pointer;
+    color: darkcyan;
+}
+
+.label-username {
+    border-color: transparent;
+    border-style: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
 .page-padding {
     padding-left: 20%;
     padding-right: 20%;
