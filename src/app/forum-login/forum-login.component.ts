@@ -5,6 +5,8 @@ import { UserService } from '../backend/services/user.service';
 import { NgForm } from '@angular/forms';
 import { User } from '../backend/interfaces/user.interface';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-forum-login',
@@ -17,14 +19,19 @@ export class ForumLoginComponent implements OnInit {
   errorText:string = "";
   showError:boolean = false;
 
-  // Login credentials to send to the main component
-  @Output() userLogin = new EventEmitter<User>();
+  subscription:Subscription = new Subscription;
 
   constructor(private titleService:Title, private userService:UserService, 
-    private router:Router, public globals:GlobalVariables) { }
+    private router:Router, private loginService:LoginService, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.globals.websiteTitle+" - Log in");
+    // When the user is already logged in, redirect
+    this.subscription = this.loginService.currentUser.subscribe(user=> {
+      if (user != this.globals.defaultUser) {
+        this.router.navigateByUrl("");
+      }
+    });
   }
 
   // Shows an error on the screen. If nothing is input, the error hides
@@ -47,7 +54,7 @@ export class ForumLoginComponent implements OnInit {
       if (data) {
         // User is able to login
         this.displayError();
-        this.userLogin.emit(data);
+        this.loginService.changeUser(data);
         this.router.navigateByUrl("");
       }
       else {

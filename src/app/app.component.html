@@ -1,8 +1,11 @@
 <div>
+  <div *ngIf="currentUser.username!==''" style="text-align: right; padding-right: 20%;">
+    {{currentUser.username}}
+  </div>
   <div class="btn-position">
-    <button (click)="onLogin=true; onRegister=false;" *ngIf="!onLogin" class="btn-login" routerLink="/login">Log in</button>
+    <button (click)="onLogin=true; onRegister=false;" *ngIf="currentUser.username==='' && !onLogin" class="btn-login" routerLink="/login">Log in</button>
     &nbsp;
-    <button (click)="onLogin=false; onRegister=true;" *ngIf="!onRegister" class="btn-register" routerLink="/register">Register</button>
+    <button (click)="onLogin=false; onRegister=true;" *ngIf="currentUser.username==='' && !onRegister" class="btn-register" routerLink="/register">Register</button>
   </div>
   <hr>
   <div>
