@@ -56,3 +56,12 @@ exports.findOne = (request,response)=> {
         response.status(500).send({message:err});
     });
 };
+
+exports.findAll = (request,response)=> {
+    User.find().then(data=> {
+        response.send(data);
+    })
+    .catch(err=> {
+        response.status(500).send({message:err});
+    });
+};

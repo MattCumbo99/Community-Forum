@@ -1,1 +1,32 @@
-<p>forum-members works!</p>
+<div>
+    <h2 class="page-title">Member List</h2>
+    <div *ngIf="members.length == 0">
+        <h3>No members yet</h3>
+    </div>
+    <div *ngIf="members.length > 0">
+        <form>
+            <input type="text" placeholder="Search users">
+            <br><br>
+        </form>
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date Joined</th>
+                    <th>Role</th>
+                    <th>Total Posts</th>
+                    <th>Total Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of members">
+                    <td>{{user.username}}</td>
+                    <td>{{user.dateCreated | date}}</td>
+                    <td>{{getRoleName(user.privilege)}}</td>
+                    <td style="text-align: center;">{{user.posts?.length || '0'}}</td>
+                    <td style="text-align: center;">{{user.comments?.length || '0'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

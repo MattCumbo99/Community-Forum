@@ -1,0 +1,15 @@
+.member-table {
+    width: 100%;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: black;
+}
+
+.member-table th {
+    border-style: solid;
+}
+
+.member-table td {
+    border-style: solid;
+    border-width: thin;
+}
