@@ -14,7 +14,20 @@
                 {{globals.getRoleName(userProfile.privilege)}} 
             </div>
             <div>
-                From 
+                {{userProfile.location || 'No location provided'}}
+            </div>
+            <hr>
+            <div>
+                <table style="width: 50%; padding-left: 100px;">
+                    <tr>
+                        <th>Posts Created</th>
+                        <th>Comments Made</th>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td>{{userProfile.posts?.length || 0}}</td>
+                        <td>{{userProfile.comments?.length || 0}}</td>
+                    </tr>
+                </table>
             </div>
         </div>  
     </div>

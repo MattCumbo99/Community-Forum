@@ -18,9 +18,13 @@
                     <th>Total Comments</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="member-table-rows">
                 <tr *ngFor="let user of members">
-                    <td>{{user.username}}</td>
+                    <td>
+                        <a [routerLink]="['/members/'+user.username]" class="member-name">
+                            {{user.username}}
+                        </a>
+                    </td>
                     <td>{{user.dateCreated | date}}</td>
                     <td [ngClass]="{'role-moderator':user.privilege==253, 'role-admin':user.privilege==254, 'role-head-admin':user.privilege==255}">
                         {{globals.getRoleName(user.privilege)}}
