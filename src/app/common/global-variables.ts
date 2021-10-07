@@ -43,4 +43,30 @@ export class GlobalVariables {
         else
             return "Invalid";
     }
+
+    // Used for grabbing the logged in user via cookies
+    private loginVar:string = 'forum_login';
+
+    // Grabs the info of the currently logged in user
+    public getCurrentUserDetails(): string {
+        const logger = window.localStorage.getItem(this.loginVar);
+        const logger2 = window.sessionStorage.getItem(this.loginVar);
+
+        // Attempt to figure out if the user is already logged in
+        if (typeof logger==='string') {
+            return logger.toString();
+        }
+        else if (typeof logger2==='string') {
+            return logger2.toString();
+        }
+        // User is not logged in
+        return "";
+    }
+    
+    // Logout button function
+    public logoutUser(): void {
+        window.localStorage.removeItem(this.loginVar);
+        window.sessionStorage.removeItem(this.loginVar);
+        location.reload();
+    }
 }

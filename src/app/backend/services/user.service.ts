@@ -31,4 +31,9 @@ export class UserService {
   getUserFromLogin(username:string, password:string): Observable<User> {
     return this.http.get<User>(`${baseUrl}/login/${username}/${password}`);
   }
+
+  // Updates the user details
+  updateUserDetails(userid:string, properties:{location?:string, signature?:string}): Observable<any> {
+    return this.http.put(`${baseUrl}/${userid}`, properties);
+  }
 }

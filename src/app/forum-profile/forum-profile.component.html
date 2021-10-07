@@ -6,6 +6,7 @@
             <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png">
         </div>
         <div>
+            <button class="btn-edit-profile" *ngIf="loggedInUser===userProfile.username">Edit profile</button>
             <!--User info-->
             <div class="label-username">
                 {{userProfile.username}}

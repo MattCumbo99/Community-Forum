@@ -48,6 +48,20 @@ exports.register = (request,response)=> {
     });
 };
 
+exports.updateOne = (request,response)=> {
+    const id = request.params.id;
+    const data = request.params.data;
+
+    User.findAndModify({
+        query:{username:id}, // User parameters to look for
+        update:{location:data.location, signature:data.signature},
+    }).then(res=> {
+        response.send(res);
+    }).catch(err=> {
+        response.status(500).send(err);
+    });
+};
+
 exports.grabLogin = (request,response)=> {
     const username = request.params.username;
     const pass = request.params.password;

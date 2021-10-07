@@ -14,6 +14,8 @@ export class ForumProfileComponent implements OnInit {
 
   // Details of the user's profile goes here
   userProfile:User = this.globals.defaultUser;
+  // Logged in username
+  loggedInUser:string = "";
 
   constructor(private titleService:Title, private route:ActivatedRoute, private userService:UserService,
     private router:Router, public globals:GlobalVariables) { }
@@ -32,6 +34,9 @@ export class ForumProfileComponent implements OnInit {
       }
     });
     this.titleService.setTitle(uname+" - "+this.globals.websiteTitle);
+    
+    this.loggedInUser = this.globals.getCurrentUserDetails();
+    console.log("Current username: " + this.loggedInUser);
   }
 
 }
