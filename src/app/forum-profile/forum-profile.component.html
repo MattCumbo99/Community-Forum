@@ -10,7 +10,8 @@
             <div class="label-username">
                 {{userProfile.username}}
             </div>
-            <div [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255}">
+            <div [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255,
+                            'role-owner':userProfile.privilege==256}">
                 {{globals.getRoleName(userProfile.privilege)}} 
             </div>
             <div>

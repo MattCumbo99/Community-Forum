@@ -20,13 +20,14 @@
             </thead>
             <tbody class="member-table-rows">
                 <tr *ngFor="let user of members">
-                    <td>
+                    <td style="width: 250px;">
                         <a [routerLink]="['/members/'+user.username]" class="member-name">
                             {{user.username}}
                         </a>
                     </td>
                     <td>{{user.dateCreated | date}}</td>
-                    <td [ngClass]="{'role-moderator':user.privilege==253, 'role-admin':user.privilege==254, 'role-head-admin':user.privilege==255}">
+                    <td [ngClass]="{'role-moderator':user.privilege==253, 'role-admin':user.privilege==254, 'role-head-admin':user.privilege==255,
+                                    'role-owner':user.privilege==256}">
                         {{globals.getRoleName(user.privilege)}}
                     </td>
                     <td style="text-align: center;">{{user.posts?.length || '0'}}</td>

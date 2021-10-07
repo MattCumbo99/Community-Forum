@@ -11,8 +11,9 @@ export class GlobalVariables {
         {id:0, name:"Guest"},
         {id:1, name:"Member"},
         {id:253, name:"Moderator"},
-        {id:254, name:"Administrator"},
-        {id:255, name:"Head Administrator"}
+        {id:254, name:"Admin"},
+        {id:255, name:"Head Admin"},
+        {id:256, name:"Owner"}
     ];
 
     // Default guest user

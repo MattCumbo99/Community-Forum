@@ -38,20 +38,50 @@ html * {
 }
 
 /* Styles for role coloring */
-.role-head-admin {
+.role-moderator::before {
+    content: '\2605';
+}
+.role-moderator {
     font-weight: bold;
-    color: red;
+    color: blue;
     border-color: black;
 }
+.role-moderator::after {
+    content: '\2605';
+}
 
+.role-admin::before {
+    content: '\2605\2605';
+}
 .role-admin {
     font-weight: bold;
     color: darkred;
     border-color: black;
 }
+.role-admin::after {
+    content: '\2605\2605';
+}
 
-.role-moderator {
+.role-head-admin::before {
+    content: '\2605\2605\2605';
+}
+.role-head-admin {
     font-weight: bold;
-    color: blue;
+    color: red;
     border-color: black;
+}
+.role-head-admin::after {
+    content: '\2605\2605\2605';
+}
+
+.role-owner::before {
+    content: '\2605\2605\2605\2605';
+}
+.role-owner {
+    font-weight: bold;
+    color: orange;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.role-owner::after {
+    content: '\2605\2605\2605\2605';
 }
