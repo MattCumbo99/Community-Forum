@@ -61,7 +61,13 @@ export class ForumLoginComponent implements OnInit {
       }
     },
     error=> {
-      this.displayError("User "+loginForm.username+" not found.");
+      this.userService.getUser(loginForm.username).subscribe(data=> {
+        this.displayError("Invalid credentials.");
+      },
+      error=> {
+        this.displayError("User "+loginForm.username+" not found.");
+      });
+      
     });
   }
 
