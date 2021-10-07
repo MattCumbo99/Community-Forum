@@ -26,11 +26,17 @@ export class AppComponent implements OnInit {
     if (typeof logger==='string') {
       this.userService.getUser(logger.toString()).subscribe(data=> {
         this.currentUser = data;
+      },
+      err=> {
+        this.logoutUser();
       });
     }
     else if (typeof logger2==='string') {
       this.userService.getUser(logger2.toString()).subscribe(data=> {
         this.currentUser = data;
+      },
+      err=> {
+        this.logoutUser();
       });
     }
   }
