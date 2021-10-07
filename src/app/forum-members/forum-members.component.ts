@@ -25,15 +25,4 @@ export class ForumMembersComponent implements OnInit {
     });
   }
 
-  // Returns the name of a role based on its id
-  getRoleName(roleId:number): string {
-    // Get the corresponding role
-    const result = this.globals.userRoles.find( ({ id }) => id == roleId);
-    if (result != null)
-      return result.name;
-    else
-      return "Invalid";
-  }
-
-
 }

@@ -1,7 +1,22 @@
 <div *ngIf="userProfile.username!==''">
     <!--User profile details here-->
     <div class="profile-block">
-        Sample user
+        <div>
+            <!--Profile picture-->
+            <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png">
+        </div>
+        <div>
+            <!--User info-->
+            <div class="label-username">
+                {{userProfile.username}}
+            </div>
+            <div [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255}">
+                {{globals.getRoleName(userProfile.privilege)}} 
+            </div>
+            <div>
+                From 
+            </div>
+        </div>  
     </div>
 </div>
 <!--Invalid user url-->

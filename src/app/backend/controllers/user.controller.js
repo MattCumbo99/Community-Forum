@@ -26,6 +26,7 @@ exports.register = (request,response)=> {
                         dateCreated: new Date(),
                         birthday: request.body.birthday,
                         signature: null,
+                        location: null,
                         posts: [],
                         comments: []
                     });

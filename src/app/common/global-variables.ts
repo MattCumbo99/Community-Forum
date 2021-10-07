@@ -28,4 +28,18 @@ export class GlobalVariables {
         posts:[],
         comments:[]
     };
+
+    // =================
+    // METHODS
+    // =================
+
+    // Returns the name of a role based on its id
+    public getRoleName(roleId:number): string {
+        // Get the corresponding role
+        const result = this.userRoles.find( ({ id }) => id == roleId);
+        if (result != null)
+            return result.name;
+        else
+            return "Invalid";
+    }
 }

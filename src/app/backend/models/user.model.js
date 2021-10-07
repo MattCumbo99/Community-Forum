@@ -8,6 +8,7 @@ module.exports = mongoose => {
             email:String,
             dateCreated:Date,
             birthday:Date,
+            signature:String,
             location:String,
             posts:Array,
             comments:Array

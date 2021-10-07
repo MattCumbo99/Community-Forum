@@ -12,6 +12,7 @@ import { GlobalVariables } from '../common/global-variables';
 })
 export class ForumProfileComponent implements OnInit {
 
+  // Details of the user's profile goes here
   userProfile:User = this.globals.defaultUser;
 
   constructor(private titleService:Title, private route:ActivatedRoute, private userService:UserService,

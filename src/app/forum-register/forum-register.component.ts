@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { UserService } from '../backend/services/user.service';
 import { GlobalVariables } from '../common/global-variables';
 
@@ -14,7 +15,8 @@ export class ForumRegisterComponent implements OnInit {
   errorText:string = "";
   showError:boolean = false;
 
-  constructor(private titleService:Title, private userService:UserService, public globals:GlobalVariables) { }
+  constructor(private titleService:Title, private userService:UserService, private router:Router,
+    public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.globals.websiteTitle+" - Register");
@@ -32,6 +34,7 @@ export class ForumRegisterComponent implements OnInit {
     }
   }
 
+  // Function called when the user presses register
   sendInfo(registerRef:NgForm): void {
     let registerForm = registerRef.value;
 
@@ -45,8 +48,14 @@ export class ForumRegisterComponent implements OnInit {
     else if (registerForm.username === "") {
       this.displayError("Username required.");
     }
+    else if (registerForm.username.length < 3) {
+      this.displayError("Username must be at least length 3.")
+    }
     else if (registerForm.password === "") {
       this.displayError("Password required.");
+    }
+    else if (registerForm.password.length < 8 || registerForm.password.length > 20) {
+      this.displayError("Password must contain between 8 and 20 characters.");
     }
     else if (registerForm.password != registerForm.repassword) {
       this.displayError("Passwords do not match.");
@@ -66,7 +75,8 @@ export class ForumRegisterComponent implements OnInit {
             // Attempt to save the user
             this.userService.registerUser(newUser).subscribe(response=> {
               this.displayError();
-              alert("Registration successful");
+              alert("You have registered successfully.");
+              this.router.navigateByUrl("/login");
             },
             error=> {
               console.log(error);

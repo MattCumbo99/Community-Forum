@@ -36,3 +36,22 @@ html * {
     border-radius: 10px;
     font-size: 20px;
 }
+
+/* Styles for role coloring */
+.role-head-admin {
+    font-weight: bold;
+    color: red;
+    border-color: black;
+}
+
+.role-admin {
+    font-weight: bold;
+    color: darkred;
+    border-color: black;
+}
+
+.role-moderator {
+    font-weight: bold;
+    color: blue;
+    border-color: black;
+}
