@@ -5,6 +5,17 @@
 .btn-edit-profile {
     float: right;
     cursor: pointer;
+    background-color: transparent;
+    border-style: none;
+    color: grey;
+}
+
+.btn-menu {
+    float: right;
+    cursor: pointer;
+    background-color: transparent;
+    border-style: none;
+    color: black;
 }
 
 .label-username {

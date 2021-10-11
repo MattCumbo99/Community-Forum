@@ -47,7 +47,7 @@ export class GlobalVariables {
     // Used for grabbing the logged in user via cookies
     private loginVar:string = 'forum_login';
 
-    // Grabs the info of the currently logged in user
+    // Grabs the username of the currently logged in user
     public getCurrentUserDetails(): string {
         const logger = window.localStorage.getItem(this.loginVar);
         const logger2 = window.sessionStorage.getItem(this.loginVar);

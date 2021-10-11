@@ -48,14 +48,13 @@ exports.register = (request,response)=> {
     });
 };
 
-exports.updateOne = (request,response)=> {
+exports.updateRole = (request,response)=> {
     const id = request.params.id;
-    const data = request.params.data;
 
-    User.findAndModify({
-        query:{username:id}, // User parameters to look for
-        update:{location:data.location, signature:data.signature},
-    }).then(res=> {
+    User.updateOne(
+        {username:id}, // User parameters to look for
+        { $set:request.body }
+    ).then(res=> {
         response.send(res);
     }).catch(err=> {
         response.status(500).send(err);

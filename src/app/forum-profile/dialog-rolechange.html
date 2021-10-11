@@ -1,0 +1,31 @@
+<h2>Change role for user: {{data.username}}</h2>
+<div>
+    <form #roleRef="ngForm" (ngSubmit)="setRole(roleRef)">
+        <div>
+            <dl>
+                <dt>
+                    <label>New role</label>
+                </dt>
+                <dd>
+                    <select name="role" ngModel>
+                        <option value="1" *ngIf="data.profilePrivilege!=1">Member</option>
+                        <option value="253" *ngIf="data.profilePrivilege!=253">Moderator</option>
+                        <option value="254" *ngIf="data.profilePrivilege!=254">Admin</option>
+                        <option value="255" *ngIf="data.loggedPrivilege>255 && data.profilePrivilege!=255">Head Admin</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <label>Reason for role change</label>
+                </dt>
+                <dd>
+                    <textarea name="reason" ngModel></textarea>
+                </dd>
+            </dl>
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
+        &nbsp;
+        <button class="btn-secondary" (click)="onNoClick()">Cancel</button>
+    </form>
+</div>

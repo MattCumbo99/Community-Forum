@@ -21,6 +21,17 @@ html * {
     cursor: pointer;
 }
 
+.btn-secondary {
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    border-radius: 5px;
+    border-style: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
 /* Error icon */
 .msg-error::before {
     content: '\2573 ';

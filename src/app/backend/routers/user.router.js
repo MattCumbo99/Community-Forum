@@ -4,7 +4,7 @@ module.exports = app => {
 
 
     router.post("", users.register);
-    router.put("/:id", users.updateOne);
+    router.put("/:id", users.updateRole);
     router.get("/:id", users.findOne);
     router.get("", users.findAll);
     router.get("/login/:username/:password", users.grabLogin);

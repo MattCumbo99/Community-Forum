@@ -33,7 +33,8 @@ export class UserService {
   }
 
   // Updates the user details
-  updateUserDetails(userid:string, properties:{location?:string, signature?:string}): Observable<any> {
+  updateUserDetails(userid:string, properties:User): Observable<any> {
     return this.http.put(`${baseUrl}/${userid}`, properties);
   }
+  
 }

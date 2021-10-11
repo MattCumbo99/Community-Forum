@@ -6,7 +6,39 @@
             <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png">
         </div>
         <div>
-            <button class="btn-edit-profile" *ngIf="loggedInUser===userProfile.username">Edit profile</button>
+            <button class="btn-edit-profile" aria *ngIf="loggedInUser.username===userProfile.username">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button class="btn-menu" [matMenuTriggerFor]="profileMenu" *ngIf="loggedInUser.privilege > 0 && loggedInUser.username!==userProfile.username">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #profileMenu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>report</mat-icon>
+                    <span>Report</span>
+                </button>
+                <!--Administrative actions-->
+                <button mat-menu-item (click)="changeUserRole()"
+                *ngIf="loggedInUser.privilege >= 255 && loggedInUser.privilege > userProfile.privilege">
+                    <mat-icon>local_police</mat-icon>
+                    <span>Change role</span>
+                </button>
+                <button mat-menu-item (click)="promoteUser()"
+                *ngIf="loggedInUser.privilege == 254 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
+                    <mat-icon>add_moderator</mat-icon>
+                    <span>Promote user</span>
+                </button>
+                <button mat-menu-item 
+                *ngIf="loggedInUser.privilege == 254 && userProfile.privilege == 253">
+                    <mat-icon>remove_moderator</mat-icon>
+                    <span>Demote user</span>
+                </button>
+                <button mat-menu-item 
+                *ngIf="loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
+                    <mat-icon>gavel</mat-icon>
+                    <span>Ban user</span>
+                </button>
+            </mat-menu>
             <!--User info-->
             <div class="label-username">
                 {{userProfile.username}}
