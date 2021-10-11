@@ -1,9 +1,13 @@
 <div>
   <div *ngIf="currentUser.username!==''" style="text-align: right; padding-right: 20%;">
+    <!--Shown when the user is logged in-->
     <button (click)="nameClick()" class="label-username">{{currentUser.username}}</button>
     &nbsp;
     <!--&vellip;-->
-    <button (click)="logoutUser()">Log out</button>
+    <button [matMenuTriggerFor]="usermenu" class="menu-actions">&vellip;</button>
+    <mat-menu #usermenu="matMenu">
+      <button mat-menu-item (click)="logoutUser()">Log out</button>
+    </mat-menu>
   </div>
   <div class="btn-position">
     <button (click)="onLogin=true; onRegister=false;" *ngIf="currentUser.username==='' && !onLogin" class="btn-login" routerLink="/login">Log in</button>
