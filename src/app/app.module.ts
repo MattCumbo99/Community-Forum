@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Angular material imports
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +38,8 @@ import { ForumProfileComponent } from './forum-profile/forum-profile.component';
     BrowserAnimationsModule,
 
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [GlobalVariables],
   bootstrap: [AppComponent]
