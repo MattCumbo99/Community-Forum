@@ -20,6 +20,11 @@ export class ForumRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(this.globals.websiteTitle+" - Register");
+
+    // When the user is already logged in, redirect
+    if (window.localStorage.getItem('forum_login') || window.sessionStorage.getItem('forum_login')) {
+      this.router.navigateByUrl("");
+    }
   }
 
   // Shows an error on the screen. If nothing is input, the error hides

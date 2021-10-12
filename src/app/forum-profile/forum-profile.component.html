@@ -34,9 +34,14 @@
                     <span>Demote user</span>
                 </button>
                 <button mat-menu-item (click)="banUser()"
-                *ngIf="loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
+                *ngIf="!isBanned && loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
                     <mat-icon>gavel</mat-icon>
                     <span>Ban user</span>
+                </button>
+                <button mat-menu-item
+                *ngIf="isBanned && loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
+                    <mat-icon>lock_open</mat-icon>
+                    <span>Unban user</span>
                 </button>
             </mat-menu>
             <!--User info-->
