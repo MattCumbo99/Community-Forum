@@ -6,6 +6,22 @@
     border-width: thin;
 }
 
+.ban-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.length-active {
+    background-color: khaki;
+}
+
+.length-inactive {
+    background-color: mediumseagreen;
+}
+
+.length-perma {
+    background-color: coral;
+}
+
 .member-table th {
     border-style: solid;
 }
@@ -16,11 +32,14 @@
 
 .member-table td {
     padding: 10px;
+    border-style: solid;
+    border-width: thin;
 }
 
 .member-name {
     color: black;
     text-decoration: none;
+    font-family: inherit;
 }
 
 .member-name:hover {

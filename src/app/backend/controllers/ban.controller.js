@@ -39,7 +39,7 @@ exports.grabOne = (request,response)=> {
 
 exports.grabAll = (request,response)=> {
 
-    Ban.find().then(data=> {
+    Ban.find().sort({createdAt:-1}).then(data=> {
         response.send(data);
     }).catch(error=> {
         response.status(500).send({

@@ -19,12 +19,12 @@
                 </button>
                 <!--Administrative actions-->
                 <button mat-menu-item (click)="changeUserRole()"
-                *ngIf="loggedInUser.privilege >= 255 && loggedInUser.privilege > userProfile.privilege">
+                *ngIf="!isBanned && loggedInUser.privilege >= 255 && loggedInUser.privilege > userProfile.privilege">
                     <mat-icon>local_police</mat-icon>
                     <span>Change role</span>
                 </button>
                 <button mat-menu-item (click)="promoteUser()"
-                *ngIf="loggedInUser.privilege == 254 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
+                *ngIf="!isBanned && loggedInUser.privilege == 254 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
                     <mat-icon>add_moderator</mat-icon>
                     <span>Promote user</span>
                 </button>

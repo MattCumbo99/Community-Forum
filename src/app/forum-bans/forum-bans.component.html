@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Ban Reason</th>
+                    <th>Ban Info</th>
                     <th>Length</th>
                 </tr>
             </thead>
@@ -23,9 +23,29 @@
                             {{ban.username}}
                         </a>
                     </td>
-                    <td style="width: 500px;">{{ban.reason}}</td>
-                    <td style="width: 150px; text-align: center;">
+                    <td style="width: 500px;">
+                        {{ban.reason}}
+                        <br><br>
+                        <div class="ban-info">
+                            Issued by:
+                            <a [routerLink]="['/members/'+ban.author]" class="member-name">
+                                {{ban.author}}
+                            </a>
+                            <div *ngIf="ban.unbanned">
+                                Unban reason: {{ban.unbanReason}}
+                                <br>
+                                Unbanned by:
+                                <a [routerLink]="['/members/'+ban.unbanAuthor]" class="member-name">
+                                    {{ban.unbanAuthor}}
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                    <td [ngClass]="{'length-perma':ban.lengthText==='Permanent', 'length-inactive':!isActive(ban.expiryDate.toString()) || ban.unbanned, 'length-active':isActive(ban.expiryDate.toString())}" style="width: 150px; text-align: center;">
                         {{ban.lengthText}}
+                        <span *ngIf="!isActive(ban.expiryDate.toString()) || ban.unbanned">
+                            (expired)
+                        </span>
                     </td>
                 </tr>
             </tbody>

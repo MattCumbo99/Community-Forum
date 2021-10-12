@@ -26,4 +26,12 @@ export class ForumBansComponent implements OnInit {
     });
   }
 
+  // Returns true if the ban is still active
+  isActive(expiration:string): boolean {
+    const curTime = new Date();
+    const banTime = new Date(Date.parse(expiration));
+
+    return curTime < banTime;
+  }
+
 }

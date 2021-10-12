@@ -182,18 +182,23 @@ export class DialogBan {
         switch (banForm.banlength2) {
           case 'hours':
             expireDate.setHours(expireDate.getHours() + numValue);
+            unbanText += "hour";
             break;
           case 'days':
             expireDate.setDate(expireDate.getDate() + numValue);
+            unbanText += "day";
             break;
           case 'weeks':
             expireDate.setDate(expireDate.getDate() + numValue * 7);
+            unbanText += "week";
             break;
           default:
             alert("There was an error calculating the date!");
             return;
         }
-        unbanText = banForm.banlength1 + " " + banForm.banlength2;
+        unbanText = numValue + " " + unbanText;
+        if (numValue!=1) // For plurals
+          unbanText += "s";
       }
       else {
         expireDate = this.globals.permaDate;
