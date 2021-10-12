@@ -4,9 +4,14 @@ module.exports = mongoose => {
         {
             username:String,
             reason:String,
-            unbanDate:Date
+            lengthText:String,
+            author:String,
+            expiryDate:Date,
+            unbanned:Boolean,
+            unbanReason:String,
+            unbanAuthor:String
         },
-        { timestamps:false }
+        { timestamps:true }
     );
 
     schema.method("toJSON", function() {

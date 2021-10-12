@@ -1,5 +1,10 @@
 export interface Ban {
     username:string;
     reason:string;
-    unbanDate:Date;
+    lengthText:string;
+    author:string;
+    expiryDate:Date;
+    unbanned?:boolean;
+    unbanReason?:string;
+    unbanAuthor?:string;
 }

@@ -36,7 +36,7 @@ export class ForumProfileComponent implements OnInit {
         // Determine if the user is banned
         this.banService.getUsersBan(data.username).subscribe(banData=> {
           const curTime = new Date();
-          const banTime = new Date(banData.unbanDate);
+          const banTime = new Date(banData.expiryDate);
 
           if (banTime.getTime() > curTime.getTime()) {
             this.isBanned = true;
@@ -174,6 +174,7 @@ export class DialogBan {
       this.displayError();
 
       const numValue = banForm.banlength1;
+      let unbanText = "";
       let expireDate = new Date();
 
       // Calculate the unban date
@@ -192,12 +193,14 @@ export class DialogBan {
             alert("There was an error calculating the date!");
             return;
         }
+        unbanText = banForm.banlength1 + " " + banForm.banlength2;
       }
       else {
         expireDate = this.globals.permaDate;
+        unbanText = "Permanent";
       }
       
-      const newBan = {username:this.data, reason:banForm.reason, unbanDate:expireDate};
+      const newBan = {username:this.data, reason:banForm.reason, lengthText:unbanText, expiryDate:expireDate, author:this.globals.getCurrentUserDetails()};
       // Call service to add the ban to the database
       this.banService.addBan(newBan).subscribe(res=> {
         alert("User banned.");

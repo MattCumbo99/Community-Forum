@@ -1,0 +1,34 @@
+<div>
+    <h2>Ban list</h2>
+    <div *ngIf="bans.length == 0">
+        <h3>No bans, for now...</h3>
+    </div>
+    <div *ngIf="bans.length > 0">
+        <form>
+            <input type="text" placeholder="Search users">
+            <br><br>
+        </form>
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Ban Reason</th>
+                    <th>Length</th>
+                </tr>
+            </thead>
+            <tbody class="member-table-rows">
+                <tr *ngFor="let ban of bans">
+                    <td style="width: 150px;">
+                        <a [routerLink]="['/members/'+ban.username]" class="member-name">
+                            {{ban.username}}
+                        </a>
+                    </td>
+                    <td style="width: 500px;">{{ban.reason}}</td>
+                    <td style="width: 150px; text-align: center;">
+                        {{ban.lengthText}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

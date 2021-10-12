@@ -19,6 +19,7 @@ import { ForumMembersComponent } from './forum-members/forum-members.component';
 import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
 import { GlobalVariables } from './common/global-variables';
 import { ForumProfileComponent, DialogRoleChange, DialogBan } from './forum-profile/forum-profile.component';
+import { ForumBansComponent } from './forum-bans/forum-bans.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ForumProfileComponent, DialogRoleChange, DialogBan } from './forum-prof
     ForumNotfoundComponent,
     ForumProfileComponent,
     DialogRoleChange,
-    DialogBan
+    DialogBan,
+    ForumBansComponent
   ],
   imports: [
     HttpClientModule,

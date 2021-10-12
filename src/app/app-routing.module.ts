@@ -6,6 +6,7 @@ import { ForumRegisterComponent } from './forum-register/forum-register.componen
 import { ForumMembersComponent } from './forum-members/forum-members.component';
 import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
 import { ForumProfileComponent } from './forum-profile/forum-profile.component';
+import { ForumBansComponent } from './forum-bans/forum-bans.component';
 
 const routes: Routes = [
   {path:"forums",redirectTo:"",pathMatch:"full"},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:"members/:user",component:ForumProfileComponent},
   {path:"login",component:ForumLoginComponent},
   {path:"register",component:ForumRegisterComponent},
+  {path:"bans",component:ForumBansComponent},
   {path:"",component:ForumHomeComponent},
   {path:"**",component:ForumNotfoundComponent}
 ];

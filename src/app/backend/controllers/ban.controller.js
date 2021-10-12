@@ -5,7 +5,13 @@ exports.addNew = (request,response)=> {
     const ban = new Ban({
         username: request.body.username,
         reason: request.body.reason,
-        unbanDate: request.body.unbanDate
+        lengthText: request.body.lengthText,
+        author: request.body.author,
+        expiryDate: request.body.expiryDate,
+        // These are for manually unbanning the user
+        unbanned:false,
+        unbanReason:"",
+        unbanAuthor:""
     });
 
     // Save the ban to the database
