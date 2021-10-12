@@ -66,6 +66,7 @@ exports.grabLogin = (request,response)=> {
     const pass = request.params.password;
 
     // Look through the database for the user with the corresponding password
+    // Collation is used for ignoring casing
     User.findOne({username:username}).collation({locale:'en', strength:2}).then(data=> {
         // Compare hashed functions
         bcrypt.compare(pass, data.password, function(err,result) {
