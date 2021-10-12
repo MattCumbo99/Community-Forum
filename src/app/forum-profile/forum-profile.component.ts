@@ -19,8 +19,9 @@ export class ForumProfileComponent implements OnInit {
   userProfile:User = this.globals.defaultUser;
   // Logged in user
   loggedInUser:User = this.globals.defaultUser;
+  isBanned:boolean = false;
 
-  constructor(private titleService:Title, private route:ActivatedRoute, private userService:UserService,
+  constructor(private titleService:Title, private banService:BanService, private route:ActivatedRoute, private userService:UserService,
     private router:Router, public globals:GlobalVariables, public dialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -31,12 +32,23 @@ export class ForumProfileComponent implements OnInit {
       if (data) { // User exists
         this.userProfile = data;
         this.titleService.setTitle(uname+" - "+this.globals.websiteTitle);
+
+        // Determine if the user is banned
+        this.banService.getUsersBan(data.username).subscribe(banData=> {
+          const curTime = new Date();
+          const banTime = new Date(banData.unbanDate);
+
+          if (banTime.getTime() > curTime.getTime()) {
+            this.isBanned = true;
+          }
+        });
       }
       else { // Error
         this.titleService.setTitle(this.globals.websiteTitle+" - Error");
       }
     });
     
+    // Logged in user data (mostly for privileges)
     this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
       this.loggedInUser = data;
     });
@@ -140,7 +152,7 @@ export class DialogBan {
   errorText:string = "";
   permaSelected:boolean = false;
 
-  constructor(private banService:BanService, public dialogRef:MatDialogRef<DialogBan>,
+  constructor(private banService:BanService, public globals:GlobalVariables, public dialogRef:MatDialogRef<DialogBan>,
     @Inject(MAT_DIALOG_DATA) public data:string) { }
 
   onNoClick(): void {
@@ -162,11 +174,10 @@ export class DialogBan {
       this.displayError();
 
       const numValue = banForm.banlength1;
-      let expireDate = null;
+      let expireDate = new Date();
 
       // Calculate the unban date
       if (this.permaSelected == false) {
-        expireDate = new Date();
         switch (banForm.banlength2) {
           case 'hours':
             expireDate.setHours(expireDate.getHours() + numValue);
@@ -181,6 +192,9 @@ export class DialogBan {
             alert("There was an error calculating the date!");
             return;
         }
+      }
+      else {
+        expireDate = this.globals.permaDate;
       }
       
       const newBan = {username:this.data, reason:banForm.reason, unbanDate:expireDate};

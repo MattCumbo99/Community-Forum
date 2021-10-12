@@ -40,9 +40,15 @@
                 </button>
             </mat-menu>
             <!--User info-->
-            <div class="label-username">
+            <div class="label-username" style="display: inline;">
                 {{userProfile.username}}
             </div>
+            <div *ngIf="isBanned" style="display: inline; font-size: 20px;">
+                <span>(</span>
+                <span style="color: red;">BANNED</span>
+                <span>)</span>
+            </div>
+            <br><br>
             <div [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255,
                             'role-owner':userProfile.privilege==256}">
                 {{globals.getRoleName(userProfile.privilege)}} 

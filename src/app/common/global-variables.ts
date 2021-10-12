@@ -30,6 +30,9 @@ export class GlobalVariables {
         comments:[]
     };
 
+    // Date to be given permanent bans as
+    public permaDate = new Date(2200, 31, 12);
+
     // =================
     // METHODS
     // =================
