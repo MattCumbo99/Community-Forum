@@ -1,0 +1,37 @@
+<div>
+    <h2>Ban user: {{data}}</h2>
+    <form #banRef="ngForm" (ngSubmit)="submitBan(banRef)">
+        <div class="msg-error" *ngIf="errorText.length>0">
+            <span>{{errorText}}</span>
+        </div>
+        <div>
+            <dl>
+                <dt>
+                    <label>Ban reason</label>
+                </dt>
+                <dd>
+                    <textarea name="reason" ngModel></textarea>
+                </dd>
+                <dt>
+                    <label>Ban length</label>
+                </dt>
+                <dd>
+                    <input type="number" name="banlength1" style="width: 40px;" maxlength="2" [disabled]="permaSelected" ngModel>
+                    &nbsp;
+                    <select name="banlength2" [disabled]="permaSelected" value="hours" ngModel>
+                        <option value="hours">Hours</option>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                    </select>
+                </dd>
+                <dd>
+                    <input type="checkbox" (change)="permaChanged($event)" name="banlengthPerma" id="perma" ngModel>
+                    <label for="perma">Permanent</label>
+                </dd>
+            </dl>
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
+        &nbsp;
+        <button (click)="onNoClick()" class="btn-secondary">Cancel</button>
+    </form>
+</div>

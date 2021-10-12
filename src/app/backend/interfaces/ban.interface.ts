@@ -1,5 +1,5 @@
 export interface Ban {
     username:string;
     reason:string;
-    unbanDate:Date;
+    unbanDate:Date | null;
 }

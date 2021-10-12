@@ -33,7 +33,7 @@
                     <mat-icon>remove_moderator</mat-icon>
                     <span>Demote user</span>
                 </button>
-                <button mat-menu-item 
+                <button mat-menu-item (click)="banUser()"
                 *ngIf="loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
                     <mat-icon>gavel</mat-icon>
                     <span>Ban user</span>
