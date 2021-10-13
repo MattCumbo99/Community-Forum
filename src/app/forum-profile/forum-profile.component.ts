@@ -97,7 +97,7 @@ export class ForumProfileComponent implements OnInit {
 
 @Component({
   selector: 'dialog-promote',
-  templateUrl: 'dialog-promote.html'
+  templateUrl: './dialogs/dialog-promote.html'
 })
 export class DialogPromote {
 
@@ -111,7 +111,7 @@ export class DialogPromote {
 
 @Component({
   selector: 'dialog-rolechange',
-  templateUrl: 'dialog-rolechange.html'
+  templateUrl: './dialogs/dialog-rolechange.html'
 })
 export class DialogRoleChange {
 
@@ -145,7 +145,7 @@ export class DialogRoleChange {
 
 @Component({
   selector: 'dialog-ban',
-  templateUrl: 'dialog-ban.html'
+  templateUrl: './dialogs/dialog-ban.html'
 })
 export class DialogBan {
 
