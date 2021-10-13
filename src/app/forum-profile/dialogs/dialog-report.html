@@ -1,0 +1,27 @@
+<div>
+    <h2>Report user: {{data}}</h2>
+    <form>
+        <dl>
+            <dt>
+                <label>Reason</label>
+            </dt>
+            <dd>
+                <select name="reason">
+                    <option value="trolling">Trolling</option>
+                    <option value="harassment">Harassment</option>
+                    <option value="spamming">Spamming</option>
+                    <option value="impersonating">Impersonating someone</option>
+                </select>
+            </dd>
+            <dt>
+                <label>Details</label>
+            </dt>
+            <dd>
+                <textarea name="details"></textarea>
+            </dd>
+        </dl>
+        <button type="submit" class="btn-primary">Submit</button>
+        &nbsp;
+        <button type="button" class="btn-secondary">Cancel</button>
+    </form>
+</div>

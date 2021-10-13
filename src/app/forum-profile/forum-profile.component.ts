@@ -55,6 +55,18 @@ export class ForumProfileComponent implements OnInit {
     console.log("Current username: " + this.loggedInUser.username);
   }
 
+  // Report user button function
+  reportUser(): void {
+    const dialogRef = this.dialog.open(DialogReport, {
+      width: '250px',
+      data:this.userProfile.username
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   // Promotion button function
   promoteUser(): void {
     const dialogRef = this.dialog.open(DialogPromote, {
@@ -93,6 +105,16 @@ export class ForumProfileComponent implements OnInit {
     });
   }
 
+}
+
+@Component({
+  selector: 'dialog-report',
+  templateUrl: './dialogs/dialog-report.html'
+})
+export class DialogReport {
+
+  constructor(public dialogRef:MatDialogRef<DialogReport>, 
+    @Inject(MAT_DIALOG_DATA) public data:string) { }
 }
 
 @Component({

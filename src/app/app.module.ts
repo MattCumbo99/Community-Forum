@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { ForumBansComponent } from './forum-bans/forum-bans.component';
 
     MatMenuModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatBadgeModule
   ],
   providers: [GlobalVariables],
   bootstrap: [AppComponent]
