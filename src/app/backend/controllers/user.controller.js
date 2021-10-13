@@ -22,11 +22,14 @@ exports.register = (request,response)=> {
                         username: request.body.username,
                         password: truePass,
                         privilege: 1,
+                        pfpUrl: request.body.pfpUrl,
                         email: request.body.email,
                         dateCreated: new Date(),
                         birthday: request.body.birthday,
                         signature: "",
                         location: "",
+                        messages: [],
+                        profileComments: [],
                         posts: [],
                         comments: []
                     });

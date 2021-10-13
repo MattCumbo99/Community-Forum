@@ -5,6 +5,8 @@ import { User } from "../backend/interfaces/user.interface";
 export class GlobalVariables {
     // Title of the website
     public websiteTitle:string = "Community Forum";
+    // No pfp (default url)
+    public basicPfpUrl = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";
 
     // List of roles
     public userRoles:Array<{id:number, name:string}> = [
@@ -21,13 +23,10 @@ export class GlobalVariables {
         username:"",
         password:"",
         birthday:new Date("Jan 1, 1970"),
+        pfpUrl:this.basicPfpUrl,
         email:"",
         privilege:0,
         dateCreated:new Date(),
-        signature:"",
-        location:"",
-        posts:[],
-        comments:[]
     };
 
     // Date to be given permanent bans as

@@ -1,5 +1,6 @@
 import { ForumComment } from "./forumcomment.interface";
 import { ForumPost } from "./forumpost.interface";
+import { ForumMessage } from "./message.interface";
 
 export interface User {
     username:string;
@@ -7,9 +8,12 @@ export interface User {
     privilege:number;
     email:string;
     dateCreated:Date;
+    pfpUrl:string;
     birthday:Date;
-    signature:string;
-    location:string;
-    posts:Array<ForumPost>;
-    comments:Array<ForumComment>;
+    messages?:Array<ForumMessage>;
+    signature?:string;
+    location?:string;
+    profileComments?:Array<ForumComment>;
+    posts?:Array<ForumPost>;
+    comments?:Array<ForumComment>;
 }
