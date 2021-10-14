@@ -51,6 +51,19 @@ exports.register = (request,response)=> {
     });
 };
 
+exports.addMessage = (request,response)=> {
+    const id = request.params.id;
+
+    User.updateOne(
+        {username:id},
+        { $push:{messages:request.body} }
+    ).then(res=> {
+        response.send(res);
+    }).catch(err=> {
+        response.status(500).send(err);
+    });
+};
+
 exports.updateRole = (request,response)=> {
     const id = request.params.id;
 

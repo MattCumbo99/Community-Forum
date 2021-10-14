@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
+import { ForumMessage } from '../interfaces/forummessage.interface';
 
 const baseUrl = "http://localhost:9090/api/users";
 
@@ -15,6 +16,11 @@ export class UserService {
   // Creates a new user in the database
   registerUser(data:any): Observable<any> {
     return this.http.post(`${baseUrl}/`, data);
+  }
+
+  // Adds a new notification to the user
+  sendNotification(id:string, data:ForumMessage): Observable<any> {
+    return this.http.put(`${baseUrl}/msg/${id}`, data);
   }
 
   // Finds a user by their username

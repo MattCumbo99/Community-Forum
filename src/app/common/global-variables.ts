@@ -46,9 +46,24 @@ export class GlobalVariables {
             return "Invalid";
     }
 
+    // Returns a styled string based on a given time from the past
+    public getNiceTime(dateInfo:string): string {
+        const curTime = new Date();
+        const dateValue = new Date(Date.parse(dateInfo));
+
+        if (dateValue.getDate()==curTime.getDate()) {
+            return "Today at "+dateValue.toLocaleTimeString('en-US', {hour:'numeric',minute:'numeric', hour12:true});
+        }
+        else if (dateValue.getDate()==curTime.getDate()-1) {
+            return "Yesterday at "+dateValue.toLocaleTimeString('en-US', {hour:'numeric',minute:'numeric', hour12:true});
+        }
+        else {
+            return dateValue.toLocaleDateString();
+        }
+    }
+
     // Used for grabbing the logged in user via cookies
     private loginVar:string = 'forum_login';
-
     // Grabs the username of the currently logged in user
     public getCurrentUserDetails(): string {
         const logger = window.localStorage.getItem(this.loginVar);

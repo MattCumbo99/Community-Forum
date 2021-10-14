@@ -2,8 +2,31 @@
   <!--Shown when the user is logged in-->
   <div *ngIf="currentUser.username!==''" style="text-align: right; padding-right: 20%;">
     <br>
-    <mat-icon matBadge="10" matBadgeColor="warn" style="color: gray; cursor: pointer;">mail</mat-icon>
+
+    <!--Notifications-->
+    <button type="button" [matMenuTriggerFor]="messages" class="btn-secondary">
+      <mat-icon [matBadge]="getTotalUnread() || ''" matBadgeColor="warn" style="color: gray; cursor: pointer;">
+        mail
+      </mat-icon>
+    </button>
+    <mat-menu #messages="matMenu" xPosition="before">
+      <span *ngIf="notifications.length==0">No new messages</span>
+      <table *ngFor="let msg of notifications" style="padding: 5px;">
+        <tr>
+          <td>
+            <span>{{globals.getNiceTime(msg.dateSent.toString())}}:</span>
+          </td>
+          <td>
+            <span style="font-weight: bold;">{{msg.subject}}</span>
+            <br>
+            {{msg.content}}
+          </td>
+        </tr>
+      </table>
+    </mat-menu>
+
     &nbsp;
+
     <button (click)="nameClick()" class="label-username">
       {{currentUser.username}}
     </button>

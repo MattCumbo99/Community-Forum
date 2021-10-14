@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { GlobalVariables } from '../common/global-variables';
 import { UserService } from '../backend/services/user.service';
+import { BanService } from '../backend/services/ban.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,7 +17,7 @@ export class ForumLoginComponent implements OnInit {
   errorText:string = "";
   showError:boolean = false;
 
-  constructor(private titleService:Title, private userService:UserService, 
+  constructor(private titleService:Title, private banService:BanService, private userService:UserService, 
     private router:Router, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
@@ -45,16 +46,57 @@ export class ForumLoginComponent implements OnInit {
 
     this.userService.getUserFromLogin(loginForm.username, loginForm.password).subscribe(data=> {
       if (data) {
-        // User is able to login
-        this.displayError();
-        if (loginForm.stayLogged) {
-          window.localStorage.setItem('forum_login', data.username);
-        }
-        else {
-          window.sessionStorage.setItem('forum_login', data.username);
-        }
-        location.reload();
+        // Check if the user is banned
+        this.banService.getUsersBan(loginForm.username).subscribe(banInfo=> {
+          if (!banInfo) {
+            // User is able to login
+            this.displayError();
+            if (loginForm.stayLogged) {
+              window.localStorage.setItem('forum_login', data.username);
+            }
+            else {
+              window.sessionStorage.setItem('forum_login', data.username);
+            }
+            location.reload();
+            return;
+          }
+
+          const curTime = new Date();
+          // Parse the date from mongodb into a js Date
+          const banDate = new Date(Date.parse(banInfo.expiryDate.toString()));
+
+          // Check if the ban is still active
+          if (banDate.getTime() > curTime.getTime() && banInfo.unbanned==false) {
+            this.displayError("Your account has been banned. Visit the 'Bans' tab for more information.");
+            loginRef.reset();
+          }
+          // Expired ban
+          else {
+            // User is able to login
+            this.displayError();
+            if (loginForm.stayLogged) {
+              window.localStorage.setItem('forum_login', data.username);
+            }
+            else {
+              window.sessionStorage.setItem('forum_login', data.username);
+            }
+            location.reload();
+          }
+        },
+        // User has no bans
+        error=> {
+          // User is able to login
+          this.displayError();
+          if (loginForm.stayLogged) {
+            window.localStorage.setItem('forum_login', data.username);
+          }
+          else {
+            window.sessionStorage.setItem('forum_login', data.username);
+          }
+          location.reload();
+        });
       }
+      // User doesn't exist
       else {
         this.displayError("Invalid credentials.");
         console.log(data);

@@ -1,12 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from '../backend/interfaces/user.interface';
+
+// Services
 import { UserService } from '../backend/services/user.service';
 import { BanService } from '../backend/services/ban.service';
+
+// Interfaces
+import { User } from '../backend/interfaces/user.interface';
 import { GlobalVariables } from '../common/global-variables';
-import { NgForm } from '@angular/forms';
+import { ForumMessage } from '../backend/interfaces/forummessage.interface';
 
 @Component({
   selector: 'app-forum-profile',
@@ -123,11 +128,40 @@ export class DialogReport {
 })
 export class DialogPromote {
 
-  constructor(public dialogRef:MatDialogRef<DialogPromote>, 
-    @Inject(MAT_DIALOG_DATA) public data:string) { }
+  constructor(private userService:UserService, public dialogRef:MatDialogRef<DialogPromote>, 
+    @Inject(MAT_DIALOG_DATA) public data:string, public globals:GlobalVariables) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  promoteUser(): void {
+    // Update the database
+    this.userService.getUser(this.data).subscribe(data=> {
+      let newUser = data;
+      newUser.privilege = 253; // Moderator role id
+
+      this.userService.updateUserDetails(this.data, newUser).subscribe(res=> {
+        alert("User updated successfully.");
+
+        // Message to give the user
+        const promoMessage:ForumMessage = {
+          subject:"You have been promoted!",
+          content:"Your user status has been updated to Moderator.",
+          isRead:false,
+          dateSent:new Date()
+        }
+
+        this.userService.sendNotification(this.data, promoMessage).subscribe(res2=> {
+
+        });
+        window.location.reload();
+      },
+      error=> {
+        alert("There was an error updating the user");
+        console.log(error);
+      });
+    });
   }
 }
 
@@ -227,7 +261,7 @@ export class DialogBan {
         unbanText = "Permanent";
       }
       
-      const newBan = {username:this.data, reason:banForm.reason, lengthText:unbanText, expiryDate:expireDate, author:this.globals.getCurrentUserDetails()};
+      const newBan = {username:this.data, reason:banForm.reason, lengthText:unbanText, createdAt:new Date(), expiryDate:expireDate, author:this.globals.getCurrentUserDetails()};
       // Call service to add the ban to the database
       this.banService.addBan(newBan).subscribe(res=> {
         alert("User banned.");

@@ -24,13 +24,19 @@
                         </a>
                     </td>
                     <td style="width: 500px;">
-                        {{ban.reason}}
+                        "{{ban.reason}}"
                         <br><br>
+                        <span>----------------</span>
                         <div class="ban-info">
-                            Issued by:
+                            Banned by:
+                            <span style="padding-right: 15px;"></span>
                             <a [routerLink]="['/members/'+ban.author]" class="member-name">
                                 {{ban.author}}
                             </a>
+                            <br>
+                            Issued on:
+                            <span style="padding-right: 21px;"></span> 
+                            {{ban.createdAt | date:'full'}}
                             <div *ngIf="ban.unbanned">
                                 Unban reason: {{ban.unbanReason}}
                                 <br>

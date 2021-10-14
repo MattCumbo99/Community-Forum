@@ -4,6 +4,7 @@ export interface Ban {
     lengthText:string;
     author:string;
     expiryDate:Date;
+    createdAt:Date;
     unbanned?:boolean;
     unbanReason?:string;
     unbanAuthor?:string;

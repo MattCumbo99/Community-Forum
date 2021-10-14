@@ -1,6 +1,6 @@
 import { ForumComment } from "./forumcomment.interface";
 import { ForumPost } from "./forumpost.interface";
-import { ForumMessage } from "./message.interface";
+import { ForumMessage } from "./forummessage.interface";
 
 export interface User {
     username:string;

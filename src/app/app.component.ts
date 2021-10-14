@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ForumMessage } from './backend/interfaces/forummessage.interface';
 import { User } from './backend/interfaces/user.interface';
 import { UserService } from './backend/services/user.service';
 import { GlobalVariables } from './common/global-variables';
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
 
   // Holds the information about the logged in user
   currentUser:User = this.globals.defaultUser;
+  notifications:Array<ForumMessage> = [];
 
   constructor(private userService:UserService, private router:Router, public globals:GlobalVariables) { }
 
@@ -26,6 +28,9 @@ export class AppComponent implements OnInit {
     if (typeof logger==='string') {
       this.userService.getUser(logger.toString()).subscribe(data=> {
         this.currentUser = data;
+        data.messages?.forEach(element=> {
+          this.notifications.push(element);
+        });
       },
       err=> {
         this.logoutUser();
@@ -34,11 +39,23 @@ export class AppComponent implements OnInit {
     else if (typeof logger2==='string') {
       this.userService.getUser(logger2.toString()).subscribe(data=> {
         this.currentUser = data;
+        data.messages?.forEach(element=> {
+          this.notifications.push(element);
+        });
       },
       err=> {
         this.logoutUser();
       });
     }
+  }
+
+  getTotalUnread(): number {
+    let result = 0;
+    this.notifications.forEach(element=> {
+      if (element.isRead==false)
+        result++;
+    });
+    return result;
   }
 
   // Function for when the user clicks their name
