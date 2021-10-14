@@ -21,6 +21,8 @@
             <tbody class="member-table-rows">
                 <tr *ngFor="let user of members">
                     <td style="width: 250px;">
+                        <!--Profile picture-->
+                        <img [src]="user.pfpUrl" class="img-profile-mini">
                         <a [routerLink]="['/members/'+user.username]" class="member-name">
                             {{user.username}}
                         </a>

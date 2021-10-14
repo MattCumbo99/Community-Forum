@@ -3,7 +3,7 @@
     <div class="profile-block">
         <div>
             <!--Profile picture-->
-            <img src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png">
+            <img [src]="userProfile.pfpUrl" class="img-profile-main">
         </div>
         <div>
             <button class="btn-edit-profile" aria *ngIf="loggedInUser.username===userProfile.username">

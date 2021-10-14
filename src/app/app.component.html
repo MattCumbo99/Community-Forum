@@ -21,7 +21,9 @@
     </mat-menu>
 
     &nbsp;
-
+    
+    <!--Profile picture-->
+    <img [src]="profilePicUrl" (click)="nameClick()" class="img-profile-header">
     <button (click)="nameClick()" class="label-username">
       {{currentUser.username}}
     </button>

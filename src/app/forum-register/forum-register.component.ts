@@ -74,7 +74,7 @@ export class ForumRegisterComponent implements OnInit {
         // Username is not taken, register
         if (!data) {
           // Make a new object to save the user as
-          const newUser = {username:registerForm.username, password:registerForm.password, 
+          const newUser = {username:registerForm.username, password:registerForm.password, pfpUrl:this.globals.basicPfpUrl,
             email:registerForm.email, birthday:registerForm.dob};
 
             // Attempt to save the user

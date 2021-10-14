@@ -7,6 +7,16 @@
     font-size: 20px;
 }
 
+.img-profile-header {
+    border-radius: 50%;
+    width: 100%;
+    min-width: 40px;
+    max-width: 40px;
+    padding-right: 5px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
 .msg-unread {
     font-weight: bold;
 }

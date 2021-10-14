@@ -2,6 +2,12 @@
     padding-left: 10px;
 }
 
+.img-profile-main {
+    width: 100%;
+    min-width: 200px;
+    max-width: 200px;
+}
+
 .btn-edit-profile {
     float: right;
     cursor: pointer;

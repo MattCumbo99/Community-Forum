@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   // Holds the information about the logged in user
   currentUser:User = this.globals.defaultUser;
   notifications:Array<ForumMessage> = [];
+  profilePicUrl:string = "";
 
   constructor(private userService:UserService, private router:Router, public globals:GlobalVariables) { }
 
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
       const bdate = new Date(Date.parse(b.dateSent.toString()));
       return bdate.getTime() - adate.getTime();
     });
+    this.profilePicUrl = details.pfpUrl;
   }
 
   ngOnInit() {
