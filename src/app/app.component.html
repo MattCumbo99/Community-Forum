@@ -11,18 +11,13 @@
     </button>
     <mat-menu #messages="matMenu" xPosition="before">
       <span *ngIf="notifications.length==0">No new messages</span>
-      <table *ngFor="let msg of notifications" style="padding: 5px;">
-        <tr>
-          <td>
-            <span>{{globals.getNiceTime(msg.dateSent.toString())}}:</span>
-          </td>
-          <td>
-            <span style="font-weight: bold;">{{msg.subject}}</span>
-            <br>
-            {{msg.content}}
-          </td>
-        </tr>
-      </table>
+      <button *ngIf="notifications.length>0" style="font-size: 12px;">mark all as read</button>
+      <div *ngFor="let msg of notifications; let i=index">
+        <button mat-menu-item (click)="displayMessage(msg, i)">
+          <span [ngClass]="{'msg-unread':!msg.isRead}">{{globals.getNiceTime(msg.dateSent.toString())}}</span> ->
+          <span [ngClass]="{'msg-unread':!msg.isRead}">{{msg.subject}}</span>
+        </button>
+      </div>
     </mat-menu>
 
     &nbsp;

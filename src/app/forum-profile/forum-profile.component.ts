@@ -40,11 +40,13 @@ export class ForumProfileComponent implements OnInit {
 
         // Determine if the user is banned
         this.banService.getUsersBan(data.username).subscribe(banData=> {
-          const curTime = new Date();
-          const banTime = new Date(banData.expiryDate);
+          if (banData) {
+            const curTime = new Date();
+            const banTime = new Date(Date.parse(banData.expiryDate.toString()));
 
-          if (banTime.getTime() > curTime.getTime()) {
-            this.isBanned = true;
+            if (banTime.getTime() > curTime.getTime()) {
+              this.isBanned = true;
+            }
           }
         });
       }
@@ -146,8 +148,8 @@ export class DialogPromote {
 
         // Message to give the user
         const promoMessage:ForumMessage = {
-          subject:"You have been promoted!",
-          content:"Your user status has been updated to Moderator.",
+          subject:"Your role has been changed to: Moderator",
+          linkUrl:"/members/"+this.data,
           isRead:false,
           dateSent:new Date()
         }
@@ -187,7 +189,20 @@ export class DialogRoleChange {
       newUser.privilege = roleForm.role;
 
       this.userService.updateUserDetails(this.data.username, newUser).subscribe(res=> {
+        // Message to give the user
+        const promoMessage:ForumMessage = {
+          subject:"Your role has been changed to: "+this.globals.getRoleName(roleForm.role),
+          linkUrl:"/members/"+this.data.username,
+          isRead:false,
+          dateSent:new Date()
+        }
+
+        this.userService.sendNotification(this.data.username, promoMessage).subscribe(res2=> {
+
+        });
+
         alert("User updated successfully.");
+
         window.location.reload();
       },
       error=> {

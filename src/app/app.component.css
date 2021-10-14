@@ -7,6 +7,10 @@
     font-size: 20px;
 }
 
+.msg-unread {
+    font-weight: bold;
+}
+
 ::ng-deep.mat-menu-panel {
     max-width: none !important;
     padding: 10px;

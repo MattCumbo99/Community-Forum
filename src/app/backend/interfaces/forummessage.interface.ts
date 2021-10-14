@@ -1,6 +1,6 @@
 export interface ForumMessage {
     subject:string;
-    content:string;
+    linkUrl:string;
     isRead:boolean;
     dateSent:Date;
 }
