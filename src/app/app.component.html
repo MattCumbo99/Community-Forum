@@ -44,11 +44,11 @@
 
   <!--Buttons when the user is not logged in-->
   <div class="btn-position">
-    <button (click)="onLogin=true; onRegister=false;" *ngIf="currentUser.username==='' && !onLogin" class="btn-login" routerLink="/login">
+    <button *ngIf="currentUser.username==='' && router.url!=='/login'" class="btn-login" routerLink="/login">
       Log in
     </button>
     &nbsp;
-    <button (click)="onLogin=false; onRegister=true;" *ngIf="currentUser.username==='' && !onRegister" class="btn-register" routerLink="/register">
+    <button *ngIf="currentUser.username==='' && router.url!=='/register'" class="btn-register" routerLink="/register">
       Register
     </button>
   </div>

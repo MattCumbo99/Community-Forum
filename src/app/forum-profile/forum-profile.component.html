@@ -6,7 +6,7 @@
             <img [src]="userProfile.pfpUrl" class="img-profile-main">
         </div>
         <div>
-            <button class="btn-edit-profile" aria *ngIf="loggedInUser.username===userProfile.username">
+            <button class="btn-edit-profile" routerLink="/editprofile" *ngIf="loggedInUser.username===userProfile.username">
                 <mat-icon>edit</mat-icon>
             </button>
             <button class="btn-menu" [matMenuTriggerFor]="profileMenu" *ngIf="loggedInUser.privilege > 0 && loggedInUser.username!==userProfile.username">

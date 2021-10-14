@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   notifications:Array<ForumMessage> = [];
   profilePicUrl:string = "";
 
-  constructor(private userService:UserService, private router:Router, public globals:GlobalVariables) { }
+  constructor(private userService:UserService, public router:Router, public globals:GlobalVariables) { }
 
   // Logs the user in
   loginUser(details:User): void {
@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
   logoutUser(): void {
     window.localStorage.removeItem('forum_login');
     window.sessionStorage.removeItem('forum_login');
-    location.reload();
+    window.location.reload();
   }
 
 }

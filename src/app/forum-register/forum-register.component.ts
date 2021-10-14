@@ -79,9 +79,9 @@ export class ForumRegisterComponent implements OnInit {
 
             // Attempt to save the user
             this.userService.registerUser(newUser).subscribe(response=> {
-              this.displayError();
-              alert("You have registered successfully.");
-              this.router.navigateByUrl("/login");
+              // Login and redirect
+              window.sessionStorage.setItem('forum_login', newUser.username);
+              window.location.reload(); 
             },
             error=> {
               console.log(error);
