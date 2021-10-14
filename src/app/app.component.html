@@ -10,7 +10,7 @@
       </mat-icon>
     </button>
     <mat-menu #messages="matMenu" xPosition="before">
-      <span *ngIf="notifications.length==0">No new messages</span>
+      <span *ngIf="notifications.length==0">No new notifications</span>
       <button *ngIf="notifications.length>0" style="font-size: 12px;">mark all as read</button>
       <div *ngFor="let msg of notifications; let i=index">
         <button mat-menu-item (click)="displayMessage(msg, i)">
