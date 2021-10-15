@@ -23,6 +23,7 @@
                     <td style="width: 250px;">
                         <!--Profile picture-->
                         <img [src]="user.pfpUrl" class="img-profile-mini">
+                        &nbsp;
                         <a [routerLink]="['/members/'+user.username]" class="member-name">
                             {{user.username}}
                         </a>
@@ -37,5 +38,6 @@
                 </tr>
             </tbody>
         </table>
+        <mat-paginator [length]="members.length" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" aria-label="Select page"></mat-paginator>
     </div>
 </div>

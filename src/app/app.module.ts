@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +48,8 @@ import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile
     MatMenuModule,
     MatDialogModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatPaginatorModule
   ],
   providers: [GlobalVariables],
   bootstrap: [AppComponent]

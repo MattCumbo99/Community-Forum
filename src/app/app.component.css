@@ -8,11 +8,15 @@
 }
 
 .img-profile-header {
-    border-radius: 50%;
     width: 100%;
     min-width: 40px;
     max-width: 40px;
-    padding-right: 5px;
+    min-height: 40px;
+    max-height: 40px;
+    position: relative;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
     cursor: pointer;
     vertical-align: middle;
 }

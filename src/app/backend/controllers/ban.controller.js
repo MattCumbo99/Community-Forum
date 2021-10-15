@@ -28,7 +28,7 @@ exports.addNew = (request,response)=> {
 exports.grabOne = (request,response)=> {
     const id = request.params.id;
 
-    Ban.findOne({username:id}).then(data=> {
+    Ban.findOne({username:id}).collation({locale:'en', strength:2}).then(data=> {
         response.send(data);
     }).catch(error=> {
         response.status(500).send({

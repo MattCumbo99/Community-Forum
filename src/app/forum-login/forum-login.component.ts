@@ -87,6 +87,7 @@ export class ForumLoginComponent implements OnInit {
         error=> {
           // User is able to login
           this.displayError();
+          
           if (loginForm.stayLogged) {
             window.localStorage.setItem('forum_login', data.username);
           }
