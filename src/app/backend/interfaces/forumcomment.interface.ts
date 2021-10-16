@@ -1,6 +1,6 @@
 
 export interface ForumComment {
     content:string;
-    user:string;
+    username:string;
     datePosted:Date;
 }

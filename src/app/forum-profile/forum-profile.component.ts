@@ -12,6 +12,7 @@ import { BanService } from '../backend/services/ban.service';
 import { User } from '../backend/interfaces/user.interface';
 import { GlobalVariables } from '../common/global-variables';
 import { ForumMessage } from '../backend/interfaces/forummessage.interface';
+import { ForumComment } from '../backend/interfaces/forumcomment.interface';
 
 @Component({
   selector: 'app-forum-profile',
@@ -22,9 +23,10 @@ export class ForumProfileComponent implements OnInit {
 
   // Details of the user's profile goes here
   userProfile:User = this.globals.defaultUser;
+  isBanned:boolean = false;
+  profileComments:Array<{user:User, content:string, postDate:Date}> = [];
   // Logged in user
   loggedInUser:User = this.globals.defaultUser;
-  isBanned:boolean = false;
 
   constructor(private titleService:Title, private banService:BanService, private route:ActivatedRoute, private userService:UserService,
     private router:Router, public globals:GlobalVariables, public dialog:MatDialog) { }
@@ -49,6 +51,17 @@ export class ForumProfileComponent implements OnInit {
             }
           }
         });
+
+        // Load profile comments
+        if (data.profileComments) {
+          data.profileComments.forEach(element=> {
+            // We dynamically get the user details for each comment
+            this.userService.getUser(element.username).subscribe(userData=> {
+              const commentObj = {user:userData, content:element.content, postDate:element.datePosted};
+              this.profileComments.unshift(commentObj);
+            });
+          });
+        }
       }
       else { // Error
         this.titleService.setTitle(this.globals.websiteTitle+" - Error");
@@ -56,8 +69,38 @@ export class ForumProfileComponent implements OnInit {
     });
     
     // Logged in user data (mostly for privileges)
-    this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
-      this.loggedInUser = data;
+    if (this.globals.getCurrentUserDetails() !== "") {
+      this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
+        this.loggedInUser = data;
+      });
+    }
+  }
+
+  // Adds a comment to the user's page
+  addComment(commentRef:NgForm): void {
+    let commentForm = commentRef.value;
+    // Create the comment
+    const newComment:ForumComment = {content:commentForm.comment, username:this.loggedInUser.username, datePosted:new Date()};
+
+    // Prepare to add the comment to the database
+    if (this.userProfile.profileComments) {
+      this.userProfile.profileComments.push(newComment);
+      // If this isn't their own profile, send a notification
+      if (this.userProfile.messages && this.userProfile.username!=this.loggedInUser.username) {
+        const newMessage:ForumMessage = {
+          subject:this.loggedInUser.username+" added a comment to your profile", 
+          linkUrl:"/members/"+this.userProfile.username, 
+          isRead:false, 
+          dateSent:new Date()
+        };
+
+        this.userProfile.messages.push(newMessage);
+      }
+    }
+
+    // Save the comment to the user's database object
+    this.userService.updateUserDetails(this.userProfile.username, this.userProfile).subscribe(()=> {
+      window.location.reload();
     });
   }
 

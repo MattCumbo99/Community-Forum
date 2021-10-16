@@ -6,6 +6,15 @@
     font-style: italic;
 }
 
+.profile-comments {
+    width: 100%;
+    border-style: solid;
+    border-width: thin;
+}
+.profile-comment-userdata {
+    border-right: thin;
+}
+
 .img-profile-main {
     width: 100%;
     min-width: 200px;

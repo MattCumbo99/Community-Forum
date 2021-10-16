@@ -85,9 +85,35 @@
             </div>
         </div>  
     </div>
+    <div style="padding-bottom: 100px;"></div>
+
+    <!--Profile comments section-->
+    <div *ngIf="loggedInUser.privilege==0" class="msg-login-required" style="text-align: center;">
+        <mat-icon>lock</mat-icon>
+        You must be logged in to comment
+    </div>
+    <form #commentRef="ngForm" (ngSubmit)="addComment(commentRef)" *ngIf="loggedInUser.privilege>0" class="form-stylized form-stylized--border">
+        <label class="form-label">Leave a comment</label>
+        <textarea name="comment" maxlength="1000" ngModel required></textarea>
+        <br><br>
+
+        <button type="submit" [disabled]="commentRef.invalid" class="btn-primary">Submit</button>
+    </form>
+    <h3 *ngIf="userProfile.profileComments && userProfile.profileComments.length==0">No comments yet</h3>
+    <br>
+    <!--Table of added comments-->
+    <table *ngIf="userProfile.profileComments && userProfile.profileComments.length>0" class="profile-comments">
+        <tr *ngFor="let comment of profileComments">
+            <td class="profile-comment-userdata">{{comment.user.username}}</td>
+            <td>{{comment.content}}</td>
+        </tr>
+    </table>
 </div>
+
 <!--Invalid user url-->
 <div *ngIf="userProfile.username===''">
     <h2 class="page-title">Oh no! We ran into some issues.</h2>
     <div>The requested user does not exist.</div>
 </div>
+
+<div style="padding-bottom: 40%;"></div>
