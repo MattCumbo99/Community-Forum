@@ -59,13 +59,14 @@
 
   <hr>
 
+  <!--Tabs-->
   <div>
     <nav (click)="onLogin=false; onRegister=false;">
-      <a routerLink="">Home</a>
-      &nbsp;
-      <a routerLink="/members">Members</a>
-      &nbsp;
-      <a routerLink="/bans">Bans</a>
+      <a routerLink="" [ngClass]="{'current-tab':router.url==='/'}">Home</a>
+      <span style="padding-right: 40px;"></span>
+      <a routerLink="/members" [ngClass]="{'current-tab':router.url==='/members'}">Members</a>
+      <span style="padding-right: 40px;"></span>
+      <a routerLink="/bans" [ngClass]="{'current-tab':router.url==='/bans'}">Bans</a>
     </nav>
   </div>
   <hr>

@@ -82,11 +82,13 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     color:rgb(40, 40, 40);
-    padding-right: 2%;
 }
-
 nav a:hover {
     color: blue;
+}
+
+.current-tab {
+    color: blue !important;
 }
 
 .btn-position {
