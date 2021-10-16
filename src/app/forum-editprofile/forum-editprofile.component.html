@@ -1,32 +1,37 @@
-<div>
-    <h2>Editing Profile</h2>
-    <form>
-        <dl>
-            <dt>
-                <label>Profile Picture Url</label>
-            </dt>
-            <dd>
-                <input type="text" name="pfpUrl">
-            </dd>
-            <dt>
-                <label>Email</label>
-            </dt>
-            <dd>
-                <input type="email" name="email">
-            </dd>
-            <dt>
-                <label>Location</label>
-            </dt>
-            <dd>
-                <input type="text" name="location">
-            </dd>
-            <dt>
-                <label>Signature</label>
-            </dt>
-            <dd>
-                <textarea name="signature"></textarea>
-            </dd>
-        </dl>
+<div style="padding-bottom: 20%;">
+    <h2>Edit Profile</h2>
+    <form #profileRef="ngForm" (ngSubmit)="editProfile(profileRef)" class="form-stylized form-stylized--border">
+        <label class="form-label"> New Profile Picture URL</label>
+        <input type="text" name="pfpUrl" ngModel>
+        <br><br>
+
+        <label class="form-label">Location</label>
+        <input type="text" name="location" ngModel="{{currentUser.location}}">
+        <br><br>
+
+        <label class="form-label">Signature</label>
+        <textarea  name="signature" ngModel="{{currentUser.signature}}"></textarea>
+        <br><br>
+
         <button type="submit" class="btn-primary">Save</button>
+    </form>
+
+    <br>
+
+    <h2>Change Password</h2>
+    <form #passRef="ngForm" (ngSubmit)="changePassword(passRef)" class="form-stylized form-stylized--border">
+        <label class="form-label">Current Password</label>
+        <input type="password" name="curPassword" ngModel>
+        <br><br>
+
+        <label class="form-label">New Password</label>
+        <input type="password" name="newPassword" ngModel>
+        <br><br>
+
+        <label class="form-label">Confirm New Password</label>
+        <input type="password" name="renewPassword" ngModel>
+        <br><br><br>
+
+        <button type="submit" disabled class="btn-primary">Save</button>
     </form>
 </div>

@@ -10,6 +10,46 @@ html * {
     font-size: 25px;
 }
 
+.form-stylized {
+    font-size: 18px;
+}
+.form-stylized--border {
+    background-color: lightcyan;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    padding: 20px;
+}
+.form-label::after {
+    content: ":";
+    padding-right: 10%;
+}
+.form-stylized input[type=text], input[type=select], input[type=password], input[type=date] {
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 12px 12px;
+    width: 96%;
+}
+.form-stylized textarea {
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 12px 12px;
+    width: 96%;
+    height: 100px;
+    resize: none;
+}
+.form-checkbox {
+    vertical-align: 3px;
+    cursor: pointer;
+    padding-left: 7px;
+}
+.form-stylized input[type=checkbox] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+
 .btn-primary {
     background-color: midnightblue;
     font-weight: bold;
@@ -19,6 +59,11 @@ html * {
     border-style: hidden;
     padding: 8px;
     cursor: pointer;
+}
+.btn-primary:disabled {
+    background-color: lightgrey;
+    color: gray;
+    cursor: default;
 }
 
 .btn-secondary {

@@ -14,6 +14,7 @@ export class ForumRegisterComponent implements OnInit {
 
   errorText:string = "";
   showError:boolean = false;
+  currentDate:Date = new Date();
 
   constructor(private titleService:Title, private userService:UserService, private router:Router,
     public globals:GlobalVariables) { }

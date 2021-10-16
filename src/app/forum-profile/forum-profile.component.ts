@@ -62,6 +62,14 @@ export class ForumProfileComponent implements OnInit {
     console.log("Current username: " + this.loggedInUser.username);
   }
 
+  // Returns the profiled user's age
+  getUserAge(): number {
+    const curTime = new Date();
+    const dob = new Date(Date.parse(this.userProfile.birthday.toString()));
+
+    return curTime.getFullYear() - dob.getFullYear();
+  }
+
   // Report user button function
   reportUser(): void {
     const dialogRef = this.dialog.open(DialogReport, {

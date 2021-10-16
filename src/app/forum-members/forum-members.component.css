@@ -13,6 +13,7 @@
     min-height: 25px;
     max-height: 25px;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .member-table th {

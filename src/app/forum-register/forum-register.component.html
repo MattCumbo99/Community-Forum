@@ -3,52 +3,35 @@
     <div class="msg-error" *ngIf="showError">
         {{errorText}}
     </div>
-    <form #registerRef="ngForm" (ngSubmit)="sendInfo(registerRef)">
-        <div>
-            <dl>
-                <dt>
-                    <label>Email</label>
-                </dt>
-                <dd>
-                    <input type="email" name="email" ngModel>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <label>Date of Birth</label>
-                </dt>
-                <dd>
-                    <input type="date" name="dob" maxlength="10" ngModel>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <label>Username</label>
-                </dt>
-                <dd>
-                    <input type="text" name="username" ngModel>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <label>Password</label>
-                </dt>
-                <dd>
-                    <input type="password" name="password" ngModel>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <label>Confirm Password</label>
-                </dt>
-                <dd>
-                    <input type="password" name="repassword" ngModel>
-                </dd>
-            </dl>
-            <input type="checkbox" id="terms" name="agreedToTerms" ngModel>
-            <label for="terms">I agree to the terms and conditions</label>
-        </div>
+    <br>
+    <!--
+        email, dob, username, password, repassword, agreeToTerms
+    -->
+    <form #registerRef="ngForm" (ngSubmit)="sendInfo(registerRef)" class="form-stylized form-stylized--border">
+        <label class="form-label">Email</label>
+        <input type="text" autofocus name="email" ngModel>
         <br><br>
+
+        <label class="form-label">Date of Birth</label>
+        <input type="date" onkeydown="return false" min="1902-01-02" max="{{currentDate | date:'yyyy-MM-dd'}}" name="dob" ngModel>
+        <br><br>
+
+        <label class="form-label">Username</label>
+        <input type="text" name="username" ngModel>
+        <br><br>
+
+        <label class="form-label">Password</label>
+        <input type="password" name="password" ngModel>
+        <br><br>
+
+        <label class="form-label">Confirm Password</label>
+        <input type="password" name="repassword" ngModel>
+        <br><br>
+
+        <input type="checkbox" id="terms" name="agreeToTerms" ngModel>
+        <label for="terms" class="form-checkbox">I agree to the terms and conditions</label>
+        <br><br><br>
+
         <button type="submit" class="btn-primary">Register</button>
     </form>
 </div>

@@ -3,33 +3,20 @@
     <div class="msg-error" *ngIf="showError">
         {{errorText}}
     </div>
-    <form #loginRef="ngForm" (ngSubmit)="checkUser(loginRef)">
-        <div>
-            <dl>
-                <dt>
-                    <label>Username</label>
-                </dt>
-                <dd>
-                    <input type="text" name="username" ngModel>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <label>Password</label>
-                </dt>
-                <dd>
-                    <input type="password" name="password" ngModel>
-                    <br>
-                    <button class="btn-forgot-password">Forgot your password?</button>
-                </dd>
-            </dl>
-            <input type="checkbox" id="logged" name="stayLogged" ngModel>
-            <label for="logged">Stay logged in</label>
-        </div>
-        <br>
+    <br>
+    <form #loginRef="ngForm" class="form-stylized form-stylized--border" (ngSubmit)="checkUser(loginRef)">
+        <label class="form-label">Username</label>
+        <input type="text" autofocus name="username" ngModel>
+        <br><br>
+        <label class="form-label">Password</label>
+        <input type="password" name="password" ngModel>
+        <br><br>
+        <input type="checkbox" name="stayLogged" id="logged" ngModel>
+        <label for="logged" class="form-checkbox">Stay logged in</label>
+        <br><br><br>
         <button type="submit" class="btn-primary">Log in</button>
     </form>
-    <hr>
+    <br>
     <div>
         Don't have an account?
         <a routerLink="/register">Register now</a>

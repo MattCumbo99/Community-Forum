@@ -22,7 +22,7 @@
                 <tr *ngFor="let user of members">
                     <td style="width: 250px;">
                         <!--Profile picture-->
-                        <img [src]="user.pfpUrl" class="img-profile-mini">
+                        <img [src]="user.pfpUrl" [routerLink]="['/members/'+user.username]"  class="img-profile-mini">
                         &nbsp;
                         <a [routerLink]="['/members/'+user.username]" class="member-name">
                             {{user.username}}

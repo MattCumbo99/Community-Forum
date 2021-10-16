@@ -59,7 +59,14 @@
                 {{globals.getRoleName(userProfile.privilege)}} 
             </div>
             <div>
-                {{userProfile.location || 'No location provided'}}
+                <!--Age-->
+                <span>{{getUserAge()}}</span>
+                &bull;
+                <!--Location-->
+                <span *ngIf="userProfile.location!==''">From </span>
+                <span [ngClass]="{'profile-info-custom':userProfile.location!==''}">
+                    {{userProfile.location || 'No location provided'}}
+                </span>
             </div>
             <hr>
             <div>
