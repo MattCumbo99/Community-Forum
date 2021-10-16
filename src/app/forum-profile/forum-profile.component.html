@@ -9,7 +9,7 @@
             <button class="btn-edit-profile" routerLink="/editprofile" *ngIf="loggedInUser.username===userProfile.username">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button class="btn-menu" [matMenuTriggerFor]="profileMenu" *ngIf="loggedInUser.privilege > 0 && loggedInUser.username!==userProfile.username">
+            <button class="btn-menu" [matMenuTriggerFor]="profileMenu" *ngIf="loggedInUser.privilege > 0 && userProfile.privilege <= loggedInUser.privilege && loggedInUser.username!==userProfile.username">
                 <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #profileMenu="matMenu">
@@ -54,10 +54,12 @@
                 <span>)</span>
             </div>
             <br><br>
-            <div [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255,
+            <span [ngClass]="{'role-moderator':userProfile.privilege==253, 'role-admin':userProfile.privilege==254, 'role-head-admin':userProfile.privilege==255,
                             'role-owner':userProfile.privilege==256}">
-                {{globals.getRoleName(userProfile.privilege)}} 
-            </div>
+                {{globals.getRoleName(userProfile.privilege)}}
+            </span>
+            &VerticalLine;
+            <span>Joined {{userProfile.dateCreated | date:'mediumDate'}}</span>
             <div>
                 <!--Age-->
                 <span>{{getUserAge()}}</span>

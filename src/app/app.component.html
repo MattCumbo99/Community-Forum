@@ -35,6 +35,10 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #usermenu="matMenu">
+      <button mat-menu-item routerLink="/editprofile">
+        <mat-icon>edit</mat-icon>
+        <span>Edit Profile</span>
+      </button>
       <button mat-menu-item (click)="logoutUser()">
         <mat-icon>logout</mat-icon>
         <span>Log out</span>
