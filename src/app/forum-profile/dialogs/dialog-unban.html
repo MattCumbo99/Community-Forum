@@ -1,0 +1,15 @@
+<div>
+    <h2>Unbanning {{data}}</h2>
+    <div *ngIf="errorText!==''" class="msg-error">
+        {{errorText}}
+    </div>
+    <form #unbanRef="ngForm" (ngSubmit)="unbanUser(unbanRef)" class="form-stylized">
+        <label class="form-label">Unban reason</label>
+        <textarea name="reason" ngModel></textarea>
+        <br><br>
+
+        <button type="submit" class="btn-primary">Submit</button>
+        <span style="padding-right: 50px;"></span>
+        <button type="button" (click)="onNoClick()" class="btn-secondary">Cancel</button> 
+    </form>
+</div>

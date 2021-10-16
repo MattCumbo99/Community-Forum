@@ -7,13 +7,17 @@
 }
 
 .img-profile-mini {
+    --image-size: 35px;
     width: 100%;
-    min-width: 25px;
-    max-width: 25px;
-    min-height: 25px;
-    max-height: 25px;
+    min-width: var(--image-size);
+    max-width: var(--image-size);
+    min-height: var(--image-size);
+    max-height: var(--image-size);
     vertical-align: middle;
     cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .member-table th {

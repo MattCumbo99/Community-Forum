@@ -38,7 +38,7 @@
                     <mat-icon>gavel</mat-icon>
                     <span>Ban user</span>
                 </button>
-                <button mat-menu-item
+                <button mat-menu-item (click)="unbanUser()"
                 *ngIf="isBanned && loggedInUser.privilege >= 253 && loggedInUser.privilege > userProfile.privilege && userProfile.privilege < 253">
                     <mat-icon>lock_open</mat-icon>
                     <span>Unban user</span>

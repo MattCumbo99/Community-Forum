@@ -1,37 +1,53 @@
 <div>
     <h2>Ban user: {{data}}</h2>
-    <form #banRef="ngForm" (ngSubmit)="submitBan(banRef)">
-        <div class="msg-error" *ngIf="errorText.length>0">
-            <span>{{errorText}}</span>
-        </div>
-        <div>
-            <dl>
-                <dt>
-                    <label>Ban reason</label>
-                </dt>
-                <dd>
-                    <textarea name="reason" ngModel></textarea>
-                </dd>
-                <dt>
-                    <label>Ban length</label>
-                </dt>
-                <dd>
-                    <input type="number" name="banlength1" style="width: 40px;" maxlength="2" [disabled]="permaSelected" ngModel>
-                    &nbsp;
-                    <select name="banlength2" [disabled]="permaSelected" value="hours" ngModel>
-                        <option value="hours">Hours</option>
-                        <option value="days">Days</option>
-                        <option value="weeks">Weeks</option>
-                    </select>
-                </dd>
-                <dd>
-                    <input type="checkbox" (change)="permaChanged($event)" name="banlengthPerma" id="perma" ngModel>
-                    <label for="perma">Permanent</label>
-                </dd>
-            </dl>
-        </div>
-        <button type="submit" class="btn-primary">Submit</button>
+    <div class="msg-error" *ngIf="errorText.length>0">
+        <span>{{errorText}}</span>
+    </div>
+
+    <br>
+
+    <form #banRef="ngForm" (ngSubmit)="submitBan(banRef)" class="form-stylized">
+        <label class="form-label">Ban reason</label>
+        <textarea name="reason" ngModel></textarea>
+        <br>
+
+        <label class="form-label">Ban length</label>
+        <br>
+        <input type="number" name="banlength1" onkeydown="return false" min="1" max="{{maxBanLength}}" [disabled]="permaSelected" ngModel="{{currentBanLength}}">
         &nbsp;
-        <button (click)="onNoClick()" class="btn-secondary">Cancel</button>
+        <select name="banlength2" (change)="changeBanLength($event)" [disabled]="permaSelected" style="width: 200px;" value="hours" ngModel="hours">
+            <option value="hours">Hour(s)</option>
+            <option value="days">Day(s)</option>
+            <option value="weeks">Week(s)</option>
+        </select>
+        <span style="padding-right: 30px;"></span>
+        <input type="checkbox" (change)="permaChanged($event)" name="banlengthPerma" id="perma" ngModel>
+        <label for="perma" class="form-checkbox">Permanent</label>
+        <br><br><br><br>
+
+        <button type="submit" class="btn-primary">Submit</button>
+        <span style="padding-right: 50px;"></span>
+        <button type="button" (click)="onNoClick()" class="btn-secondary">Cancel</button> 
     </form>
 </div>
+<style>
+    .form-stylized input[type=number]:focus {
+        outline: none;
+    }
+    .form-stylized input[type=number] {
+        font-size: 16px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding: 6px 6px;
+        width: 50px; 
+        text-align: left; 
+        border-style: solid;
+        border-color: transparent;
+        border-bottom-color: black;
+    }
+    .form-stylized select {
+        font-size: 16px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding: 12px 12px;
+        width: 100px; 
+    }
+</style>

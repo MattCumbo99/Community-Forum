@@ -20,7 +20,7 @@ import { ForumRegisterComponent } from './forum-register/forum-register.componen
 import { ForumMembersComponent } from './forum-members/forum-members.component';
 import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.component';
 import { GlobalVariables } from './common/global-variables';
-import { ForumProfileComponent, DialogRoleChange, DialogBan } from './forum-profile/forum-profile.component';
+import { ForumProfileComponent, DialogRoleChange, DialogBan, DialogUnban } from './forum-profile/forum-profile.component';
 import { ForumBansComponent } from './forum-bans/forum-bans.component';
 import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile.component';
 
@@ -35,6 +35,7 @@ import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile
     ForumProfileComponent,
     DialogRoleChange,
     DialogBan,
+    DialogUnban,
     ForumBansComponent,
     ForumEditprofileComponent
   ],

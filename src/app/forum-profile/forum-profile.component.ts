@@ -40,7 +40,7 @@ export class ForumProfileComponent implements OnInit {
 
         // Determine if the user is banned
         this.banService.getUsersBan(data.username).subscribe(banData=> {
-          if (banData) {
+          if (banData && !banData.unbanned) {
             const curTime = new Date();
             const banTime = new Date(Date.parse(banData.expiryDate.toString()));
 
@@ -59,15 +59,19 @@ export class ForumProfileComponent implements OnInit {
     this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
       this.loggedInUser = data;
     });
-    console.log("Current username: " + this.loggedInUser.username);
   }
 
   // Returns the profiled user's age
   getUserAge(): number {
-    const curTime = new Date();
-    const dob = new Date(Date.parse(this.userProfile.birthday.toString()));
+    const today = new Date();
+    const birthDate = new Date(Date.parse(this.userProfile.birthday.toString()));
+    const m = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - birthDate.getFullYear();
 
-    return curTime.getFullYear() - dob.getFullYear();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
   }
 
   // Report user button function
@@ -120,6 +124,66 @@ export class ForumProfileComponent implements OnInit {
     });
   }
 
+  // Unban user function
+  unbanUser(): void {
+    const dialogRef = this.dialog.open(DialogUnban, {
+      width: '750px',
+      height: '350px',
+      data:this.userProfile.username
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+}
+
+@Component({
+  selector: 'dialog-unban',
+  templateUrl: './dialogs/dialog-unban.html'
+})
+export class DialogUnban {
+
+  errorText:string = "";
+
+  constructor(private banService:BanService, public globals:GlobalVariables, public dialogRef:MatDialogRef<DialogUnban>, 
+    @Inject(MAT_DIALOG_DATA) public data:string) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  unbanUser(unbanRef:NgForm): void {
+    let unbanForm = unbanRef.value;
+
+    if (unbanForm.reason === "") {
+      this.displayError("Unban reason required.");
+    }
+    // Unban the user
+    else {
+      this.banService.getUsersBan(this.data).subscribe(banData=> {
+        let newBan = banData;
+        newBan.unbanned = true;
+        newBan.unbanReason = unbanForm.reason;
+        newBan.unbanAuthor = this.globals.getCurrentUserDetails();
+
+        this.banService.updateBanByUser(this.data, newBan).subscribe(()=> {
+          alert("User unbanned!");
+          window.location.reload();
+        });
+      });
+    }
+  }
+
+  // Shows an error on the screen. If nothing is input, the error hides
+  displayError(text?:string): void {
+    if (text != null) {
+      this.errorText = text;
+    }
+    else {
+      this.errorText = "";
+    }
+  }
 }
 
 @Component({
@@ -230,12 +294,31 @@ export class DialogBan {
 
   errorText:string = "";
   permaSelected:boolean = false;
+  maxBanLength:number = 23;
+  currentBanLength:number = 1;
 
   constructor(private banService:BanService, public globals:GlobalVariables, public dialogRef:MatDialogRef<DialogBan>,
     @Inject(MAT_DIALOG_DATA) public data:string) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  // Max amount allowed for each option
+  changeBanLength(event:any): void {
+    switch (event.target.value) {
+      case 'hours':
+        this.maxBanLength = 23;
+        break;
+      case 'days':
+        this.maxBanLength = 6;
+        break;
+      case 'weeks':
+        this.maxBanLength = 4;
+        break;
+    }
+    this.currentBanLength = 1;
+    
   }
 
   // Submit function
@@ -245,8 +328,11 @@ export class DialogBan {
     if (banForm.reason === "") {
       this.displayError("Ban reason required.");
     }
-    else if (this.permaSelected==false && (banForm.banlength1 <= 0 || banForm.banlength2 === "")) {
-      this.displayError("Invalid ban length.");
+    else if (this.permaSelected==false && (banForm.banlength1 <= 0 || 
+      (banForm.banlength2==="hours" && banForm.banlength1 > 23) ||
+      (banForm.banlength2==="days" && banForm.banlength1 > 6) || 
+      (banForm.banlength2==="weeks" && banForm.banlength1 > 4))) {
+      this.displayError("Invalid ban length");
     }
     // Form success
     else {
@@ -284,7 +370,7 @@ export class DialogBan {
         unbanText = "Permanent";
       }
       
-      const newBan = {username:this.data, reason:banForm.reason, lengthText:unbanText, createdAt:new Date(), expiryDate:expireDate, author:this.globals.getCurrentUserDetails()};
+      const newBan = {username:this.data, reason:banForm.reason, lengthText:unbanText, createdAt:new Date(), updatedAt:new Date(), expiryDate:expireDate, author:this.globals.getCurrentUserDetails()};
       // Call service to add the ban to the database
       this.banService.addBan(newBan).subscribe(res=> {
         alert("User banned.");

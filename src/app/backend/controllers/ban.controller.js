@@ -28,7 +28,8 @@ exports.addNew = (request,response)=> {
 exports.grabOne = (request,response)=> {
     const id = request.params.id;
 
-    Ban.findOne({username:id}).collation({locale:'en', strength:2}).then(data=> {
+    // Gets the most recent ban
+    Ban.findOne({username:id}).sort({$natural:-1}).collation({locale:'en', strength:2}).then(data=> {
         response.send(data);
     }).catch(error=> {
         response.status(500).send({
@@ -51,10 +52,7 @@ exports.grabAll = (request,response)=> {
 exports.updateBan = (request,response)=> {
     const id = request.params.id;
 
-    Ban.updateOne(
-        {username:id},
-        {$set:request.body}
-    ).then(res=> {
+    Ban.findOneAndUpdate({username:id}, request.body, {sort:{$natural:-1}}).then(res=> {
         response.send(res);
     }).catch(error=> {
         response.status(500).send({

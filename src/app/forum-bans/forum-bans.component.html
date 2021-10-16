@@ -26,28 +26,39 @@
                     <td style="width: 500px;">
                         "{{ban.reason}}"
                         <br><br>
+                        <span *ngIf="ban.unbanned" style="font-size: 14px;">
+                            <b>Unbanned:</b> "{{ban.unbanReason}}"
+                        </span>
+                        <br>
                         <span>----------------</span>
                         <div class="ban-info">
                             Banned by:
-                            <span style="padding-right: 15px;"></span>
+                            <span style="padding-right: 30px;"></span>
                             <a [routerLink]="['/members/'+ban.author]" class="member-name">
                                 {{ban.author}}
                             </a>
                             <br>
                             Issued on:
-                            <span style="padding-right: 21px;"></span> 
+                            <span style="padding-right: 36px;"></span> 
                             {{ban.createdAt | date:'full'}}
-                            <div *ngIf="ban.unbanned">
-                                Unban reason: {{ban.unbanReason}}
-                                <br>
+                            <div class="ban-info" *ngIf="ban.unbanned">
                                 Unbanned by:
+                                <span style="padding-right: 13px;"></span>
                                 <a [routerLink]="['/members/'+ban.unbanAuthor]" class="member-name">
                                     {{ban.unbanAuthor}}
                                 </a>
+                                <br>
+                                Unbanned on:
+                                <span style="padding-right: 13px;"></span>
+                                {{ban.updatedAt | date:'full'}}
                             </div>
                         </div>
                     </td>
-                    <td [ngClass]="{'length-perma':ban.lengthText==='Permanent', 'length-inactive':!isActive(ban.expiryDate.toString()) || ban.unbanned, 'length-active':isActive(ban.expiryDate.toString())}" style="width: 150px; text-align: center;">
+                    <td [ngClass]=
+                    "{'length-inactive':!isActive(ban.expiryDate.toString()) || ban.unbanned, 
+                    'length-perma':ban.lengthText==='Permanent' && !ban.unbanned,
+                    'length-active':isActive(ban.expiryDate.toString())}" 
+                    style="width: 150px; text-align: center;">
                         {{ban.lengthText}}
                         <span *ngIf="!isActive(ban.expiryDate.toString()) || ban.unbanned">
                             (expired)
