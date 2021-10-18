@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +51,8 @@ import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile
     MatDialogModule,
     MatIconModule,
     MatBadgeModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule
   ],
   providers: [GlobalVariables],
   bootstrap: [AppComponent]

@@ -6,6 +6,16 @@
     border-width: thin;
 }
 
+.disable_ripple {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font: inherit;
+}
+.disable_ripple:hover{
+    background-color: transparent !important;
+}
+
 .ban-info {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;

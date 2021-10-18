@@ -24,7 +24,47 @@
                         </a>
                     </td>
                     <td style="width: 500px;">
-                        "{{ban.reason}}"
+                        <mat-accordion>
+                            <mat-expansion-panel class="mat-elevation-z0 disable_ripple" hideToggle>
+                                <mat-expansion-panel-header class="disable_ripple">
+                                    <mat-panel-title style="padding-right: 130px;"></mat-panel-title>
+                                    <mat-panel-description style="font-style: italic;">
+                                        Click to expand
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <!--Ban details-->
+                                "{{ban.reason}}"
+                                <br><br>
+                                <span *ngIf="ban.unbanned" style="font-size: 14px;">
+                                    <b>Unbanned:</b> "{{ban.unbanReason}}"
+                                </span>
+                                <br>
+                                <span>----------------</span>
+                                <div class="ban-info">
+                                    Banned by:
+                                    <span style="padding-right: 30px;"></span>
+                                    <a [routerLink]="['/members/'+ban.author]" class="member-name">
+                                        {{ban.author}}
+                                    </a>
+                                    <br>
+                                    Issued on:
+                                    <span style="padding-right: 36px;"></span> 
+                                    {{ban.createdAt | date:'full'}}
+                                    <div class="ban-info" *ngIf="ban.unbanned">
+                                        Unbanned by:
+                                        <span style="padding-right: 13px;"></span>
+                                        <a [routerLink]="['/members/'+ban.unbanAuthor]" class="member-name">
+                                            {{ban.unbanAuthor}}
+                                        </a>
+                                        <br>
+                                        Unbanned on:
+                                        <span style="padding-right: 13px;"></span>
+                                        {{ban.updatedAt | date:'full'}}
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <!-- "{{ban.reason}}"
                         <br><br>
                         <span *ngIf="ban.unbanned" style="font-size: 14px;">
                             <b>Unbanned:</b> "{{ban.unbanReason}}"
@@ -52,7 +92,7 @@
                                 <span style="padding-right: 13px;"></span>
                                 {{ban.updatedAt | date:'full'}}
                             </div>
-                        </div>
+                        </div> -->
                     </td>
                     <td [ngClass]=
                     "{'length-inactive':!isActive(ban.expiryDate.toString()) || ban.unbanned, 
