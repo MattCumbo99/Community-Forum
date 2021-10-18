@@ -382,6 +382,7 @@ export class DialogBan {
       this.displayError();
 
       const numValue = banForm.banlength1;
+      console.log("Number detected: "+numValue);
       let unbanText = "";
       let expireDate = new Date();
 
@@ -393,7 +394,7 @@ export class DialogBan {
             unbanText += "hour";
             break;
           case 'days':
-            expireDate.setDate(expireDate.getDate() + numValue);
+            expireDate.setDate(expireDate.getDate() + numValue * 1);
             unbanText += "day";
             break;
           case 'weeks':

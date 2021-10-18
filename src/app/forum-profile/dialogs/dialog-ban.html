@@ -15,7 +15,7 @@
         <br>
         <input type="number" name="banlength1" onkeydown="return false" min="1" max="{{maxBanLength}}" [disabled]="permaSelected" ngModel="{{currentBanLength}}">
         &nbsp;
-        <select name="banlength2" (change)="changeBanLength($event)" [disabled]="permaSelected" style="width: 200px;" value="hours" ngModel="hours">
+        <select name="banlength2" (change)="changeBanLength($event)" [disabled]="permaSelected" style="width: 200px;" ngModel="hours">
             <option value="hours">Hour(s)</option>
             <option value="days">Day(s)</option>
             <option value="weeks">Week(s)</option>
