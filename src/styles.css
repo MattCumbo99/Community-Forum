@@ -10,6 +10,21 @@ html * {
     font-size: 25px;
 }
 
+.img-profile-comment {
+    width: 100%;
+    min-width: 70px;
+    max-width: 70px;
+    min-height: 70px;
+    max-height: 70px;
+    position: relative;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 10px;
+}
+
 .form-stylized {
     font-size: 18px;
 }

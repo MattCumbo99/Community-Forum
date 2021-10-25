@@ -12,7 +12,11 @@
     border-width: thin;
 }
 .profile-comment-userdata {
+    border-color: transparent;
+    border-right-color: black;
     border-right: thin;
+    border-style: solid;
+    width: 10%;
 }
 
 .img-profile-main {
