@@ -8,17 +8,20 @@ import { ForumNotfoundComponent } from './forum-notfound/forum-notfound.componen
 import { ForumProfileComponent } from './forum-profile/forum-profile.component';
 import { ForumBansComponent } from './forum-bans/forum-bans.component';
 import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile.component';
+import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.component';
 
 const routes: Routes = [
   {path:"forums",redirectTo:"",pathMatch:"full"},
   {path:"editprofile",component:ForumEditprofileComponent},
+  {path:"adminpanel",component:ForumAdminpanelComponent},
   {path:"members",component:ForumMembersComponent},
   {path:"members/:user",component:ForumProfileComponent},
   {path:"login",component:ForumLoginComponent},
   {path:"register",component:ForumRegisterComponent},
   {path:"bans",component:ForumBansComponent},
+  {path:"error",component:ForumNotfoundComponent},
   {path:"",component:ForumHomeComponent},
-  {path:"**",component:ForumNotfoundComponent}
+  {path:"**",redirectTo:"error",pathMatch:"full"}
 ];
 
 @NgModule({

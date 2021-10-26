@@ -34,10 +34,16 @@
     <button [matMenuTriggerFor]="usermenu" class="menu-actions">
       <mat-icon>more_vert</mat-icon>
     </button>
+
+    <!--Logged in actions-->
     <mat-menu #usermenu="matMenu">
       <button mat-menu-item routerLink="/editprofile">
         <mat-icon>edit</mat-icon>
         <span>Edit Profile</span>
+      </button>
+      <button *ngIf="currentUser.privilege >= 253" mat-menu-item routerLink="/adminpanel">
+        <mat-icon>construction</mat-icon>
+        <span>Admin Panel</span>
       </button>
       <button mat-menu-item (click)="logoutUser()">
         <mat-icon>logout</mat-icon>
