@@ -1,27 +1,21 @@
 <div>
     <h2>Report user: {{data}}</h2>
-    <form>
-        <dl>
-            <dt>
-                <label>Reason</label>
-            </dt>
-            <dd>
-                <select name="reason">
-                    <option value="trolling">Trolling</option>
-                    <option value="harassment">Harassment</option>
-                    <option value="spamming">Spamming</option>
-                    <option value="impersonating">Impersonating someone</option>
-                </select>
-            </dd>
-            <dt>
-                <label>Details</label>
-            </dt>
-            <dd>
-                <textarea name="details"></textarea>
-            </dd>
-        </dl>
+    <form #reportRef="ngForm" (ngSubmit)="reportUser(reportRef)" class="form-stylized">
+        <label class="form-label">Reason</label>
+        <br>
+        <select name="reason" ngModel>
+            <option value="trolling">Trolling</option>
+            <option value="harassment">Harassment</option>
+            <option value="hateSpeech">Hate Speech</option>
+            <option value="spamming">Spamming</option>
+            <option value="impersonation">Impersonating someone</option>
+        </select>
+        <br><br>
+        <label class="form-label">Details</label>
+        <textarea name="details" ngModel></textarea>
+        <br><br>
         <button type="submit" class="btn-primary">Submit</button>
-        &nbsp;
-        <button type="button" class="btn-secondary">Cancel</button>
+        <span style="padding-right: 20px;"></span>
+        <button type="button" (click)="onNoClick()" class="btn-secondary">Cancel</button>
     </form>
 </div>

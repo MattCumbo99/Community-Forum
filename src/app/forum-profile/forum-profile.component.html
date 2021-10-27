@@ -9,11 +9,14 @@
             <button class="btn-edit-profile" routerLink="/editprofile" *ngIf="loggedInUser.username===userProfile.username">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button class="btn-menu" [matMenuTriggerFor]="profileMenu" *ngIf="loggedInUser.privilege > 0 && userProfile.privilege <= loggedInUser.privilege && loggedInUser.username!==userProfile.username">
+            <button class="btn-menu" [matMenuTriggerFor]="profileMenu" 
+            *ngIf="loggedInUser.privilege > 0 && userProfile.privilege <= loggedInUser.privilege && loggedInUser.username!==userProfile.username">
                 <mat-icon>more_horiz</mat-icon>
             </button>
+
+            <!--Profile actions the viewer can take-->
             <mat-menu #profileMenu="matMenu">
-                <button mat-menu-item (click)="reportUser()">
+                <button mat-menu-item (click)="reportUser()" [disabled]="isBanned">
                     <mat-icon>report</mat-icon>
                     <span>Report</span>
                 </button>

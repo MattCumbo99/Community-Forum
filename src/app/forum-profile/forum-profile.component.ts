@@ -120,7 +120,8 @@ export class ForumProfileComponent implements OnInit {
   // Report user button function
   reportUser(): void {
     const dialogRef = this.dialog.open(DialogReport, {
-      width: '250px',
+      width: '500px',
+      height: '500px',
       data:this.userProfile.username
     });
 
@@ -237,6 +238,15 @@ export class DialogReport {
 
   constructor(public dialogRef:MatDialogRef<DialogReport>, 
     @Inject(MAT_DIALOG_DATA) public data:string) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  // Form submit function
+  reportUser(reportRef:NgForm): void {
+    let reportForm = reportRef.value;
+  }
 }
 
 @Component({
