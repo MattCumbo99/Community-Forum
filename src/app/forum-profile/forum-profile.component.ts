@@ -197,6 +197,7 @@ export class DialogUnban {
     this.dialogRef.close();
   }
 
+  // Form submit function
   unbanUser(unbanRef:NgForm): void {
     let unbanForm = unbanRef.value;
 
@@ -262,6 +263,7 @@ export class DialogPromote {
     this.dialogRef.close();
   }
 
+  // Form submit function
   promoteUser(): void {
     // Update the database
     this.userService.getUser(this.data).subscribe(data=> {
@@ -305,6 +307,7 @@ export class DialogRoleChange {
     this.dialogRef.close();
   }
 
+  // Form submit function
   setRole(roleRef:NgForm): void {
     let roleForm = roleRef.value;
 
