@@ -30,6 +30,7 @@ db.mongoose
 require("./routers/user.router")(app);
 require("./routers/ban.router")(app);
 require("./routers/report.router")(app);
+require("./routers/adminlog.router")(app);
 
 app.listen(9090, ()=> {
     console.log("Server running on port 9090.");
