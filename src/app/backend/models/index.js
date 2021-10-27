@@ -12,5 +12,6 @@ db.url = dbConfig.url;
 //db.users = require("./user.model.js")(mongoose);
 db.users = require("./user.model")(mongoose);
 db.bans = require("./ban.model")(mongoose);
+db.reports = require("./report.model")(mongoose);
 
 module.exports = db;
