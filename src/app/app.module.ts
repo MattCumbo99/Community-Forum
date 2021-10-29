@@ -6,12 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular material imports
-import { MatMenuModule } from '@angular/material/menu';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,7 +59,11 @@ import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.co
     MatIconModule,
     MatBadgeModule,
     MatPaginatorModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatTooltipModule
   ],
   providers: [GlobalVariables],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ export interface ForumReport {
     updatedAt:Date;
 }
 
-/**
+/*
  * Report Statuses:
  * 0 - Pending (default)
  * 1 - Denied

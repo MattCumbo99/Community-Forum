@@ -10,7 +10,7 @@
                 <mat-icon>edit</mat-icon>
             </button>
             <button class="btn-menu" [matMenuTriggerFor]="profileMenu" 
-            *ngIf="loggedInUser.privilege > 0 && userProfile.privilege <= loggedInUser.privilege && loggedInUser.username!==userProfile.username">
+            *ngIf="loggedInUser.privilege > 0 && userProfile.privilege <= 253 && loggedInUser.username!==userProfile.username">
                 <mat-icon>more_horiz</mat-icon>
             </button>
 

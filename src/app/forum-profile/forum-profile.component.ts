@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 // Services
 import { UserService } from '../backend/services/user.service';
 import { BanService } from '../backend/services/ban.service';
+import { ReportService } from '../backend/services/report.service';
 
 // Interfaces
 import { User } from '../backend/interfaces/user.interface';
@@ -120,8 +121,8 @@ export class ForumProfileComponent implements OnInit {
   // Report user button function
   reportUser(): void {
     const dialogRef = this.dialog.open(DialogReport, {
-      width: '500px',
-      height: '500px',
+      width: '750px',
+      height: '750px',
       data:this.userProfile.username
     });
 
@@ -237,8 +238,8 @@ export class DialogUnban {
 })
 export class DialogReport {
 
-  constructor(public dialogRef:MatDialogRef<DialogReport>, 
-    @Inject(MAT_DIALOG_DATA) public data:string) { }
+  constructor(private reportService:ReportService, public dialogRef:MatDialogRef<DialogReport>, 
+    @Inject(MAT_DIALOG_DATA) public data:string, private globals:GlobalVariables) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -247,6 +248,26 @@ export class DialogReport {
   // Form submit function
   reportUser(reportRef:NgForm): void {
     let reportForm = reportRef.value;
+    // Grab the total amount of reports for the id
+    let totalReports = 0;
+    this.reportService.getAll().subscribe(data=> {
+      totalReports = data.length;
+    });
+
+    // Create the new report object
+    const reportObj = {
+      reportId: totalReports, 
+      sender: this.globals.getCurrentUserDetails(),
+      user: this.data,
+      reason: reportForm.reason,
+      details: reportForm.details
+    };
+    // Add it to the database
+    this.reportService.create(reportObj).subscribe(()=> {
+      this.onNoClick();
+      alert("User reported!");
+    });
+
   }
 }
 

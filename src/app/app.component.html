@@ -63,10 +63,10 @@
     </button>
   </div>
 
-  <hr>
+  <hr *ngIf="router.url!=='/adminpanel'">
 
   <!--Tabs-->
-  <div>
+  <div *ngIf="router.url!=='/adminpanel'">
     <nav (click)="onLogin=false; onRegister=false;">
       <a routerLink="" [ngClass]="{'current-tab':router.url==='/'}">Home</a>
       <span style="padding-right: 40px;"></span>
@@ -75,8 +75,11 @@
       <a routerLink="/bans" [ngClass]="{'current-tab':router.url==='/bans'}">Bans</a>
     </nav>
   </div>
-  <hr>
-  <div class="page-padding">
+
+  <hr *ngIf="router.url!=='/adminpanel'">
+
+  <!--Page content-->
+  <div [ngClass]="{'page-padding':router.url!=='/adminpanel'}">
     <router-outlet></router-outlet>
   </div>
 

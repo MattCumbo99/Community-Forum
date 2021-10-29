@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ForumReport } from '../backend/interfaces/forumreport.interface';
 import { User } from '../backend/interfaces/user.interface';
 import { UserService } from '../backend/services/user.service';
+import { ReportService } from '../backend/services/report.service';
 import { GlobalVariables } from '../common/global-variables';
 
 @Component({
@@ -13,9 +15,10 @@ import { GlobalVariables } from '../common/global-variables';
 export class ForumAdminpanelComponent implements OnInit {
 
   currentUser:User = this.globals.defaultUser;
+  reports:Array<ForumReport> = [];
 
-  constructor(private titleService:Title, private userService:UserService, private router:Router, 
-    public globals:GlobalVariables) { }
+  constructor(private titleService:Title, private userService:UserService, private reportService:ReportService,
+    public router:Router, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     // When the user is not logged in, redirect
@@ -24,14 +27,36 @@ export class ForumAdminpanelComponent implements OnInit {
       return;
     }
 
+    // Check the profile of the currently logged in user
     this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
       this.currentUser = data;
 
       if (data.privilege < 253) {
         this.router.navigateByUrl("/error");
       }
+      // Correct user can access it
+      else {
+        this.titleService.setTitle(this.globals.websiteTitle+" - Admin Panel");
+
+        this.reportService.getAll().subscribe(data=> {
+          this.reports = data;
+        });
+      }
     });
-    this.titleService.setTitle(this.globals.websiteTitle+" - Admin Panel");
+  }
+
+  // Gets the status associated with the number of a report
+  displayStatus(num:number): string {
+    switch(num) {
+      case 0:
+        return "Pending";
+      case 1:
+        return "Denied";
+      case 2:
+        return "Approved";
+      default:
+        return "Unknown status";
+    }
   }
 
 }
