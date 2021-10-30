@@ -30,6 +30,7 @@ exports.getAll = (request,response)=> {
 
 exports.updateOne = (request,response)=> {
     const id = request.params.id;
+    console.log(request.body.toString());
 
     Report.findOneAndUpdate({reportId:id}, {status:request.body}).then(res=> {
         response.send(res);

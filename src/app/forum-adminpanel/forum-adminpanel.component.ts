@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ForumReport } from '../backend/interfaces/forumreport.interface';
 import { User } from '../backend/interfaces/user.interface';
 import { UserService } from '../backend/services/user.service';
+import { AdminlogService } from '../backend/services/adminlog.service';
 import { ReportService } from '../backend/services/report.service';
 import { GlobalVariables } from '../common/global-variables';
 
@@ -17,8 +18,8 @@ export class ForumAdminpanelComponent implements OnInit {
   currentUser:User = this.globals.defaultUser;
   reports:Array<ForumReport> = [];
 
-  constructor(private titleService:Title, private userService:UserService, private reportService:ReportService,
-    public router:Router, public globals:GlobalVariables) { }
+  constructor(private titleService:Title, private userService:UserService, private adminlogService:AdminlogService,
+    private reportService:ReportService, public router:Router, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     // When the user is not logged in, redirect
@@ -59,4 +60,18 @@ export class ForumAdminpanelComponent implements OnInit {
     }
   }
 
+  // Approve function
+  approveReport(id:number): void {
+    this.reportService.updateReportStatus(id, 2).subscribe(res=> {
+      alert("Report approved!");
+    },
+    error=> {
+      alert("Error: Could not update report id " + id + "!");
+    });
+  }
+
+  // Deny function
+  denyReport(id:number): void {
+    this.reportService.updateReportStatus(id, 1);
+  }
 }

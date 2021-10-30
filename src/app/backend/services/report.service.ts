@@ -35,7 +35,7 @@ export class ReportService {
    * @param status The new status to change it to
    * @returns The new report object
    */
-  updateReportStatus(id:number, status:string): Observable<any> {
+  updateReportStatus(id:number, status:number): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, status);
   }
 }

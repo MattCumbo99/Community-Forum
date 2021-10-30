@@ -2,7 +2,8 @@
     <mat-drawer-container hasBackdrop>
         <mat-drawer #drawer mode="over">
             <!--Sidenav contents-->
-            <span>Option 1</span>
+            <button mat-menu-item>Reports</button>
+            <button mat-menu-item>Logged Actions</button>
         </mat-drawer>
         <mat-drawer-content style="padding-left: 12%; padding-right: 12%;">
             <!--Page content-->
@@ -20,8 +21,9 @@
                 </button>
             </mat-toolbar>
 
+            <!--Reports table-->
             <h3>Reports</h3>
-            <table class="table-stylized" *ngFor="let report of reports">
+            <table class="table-stylized">
                 <tr>
                     <th>Reported User</th>
                     <th>Reason</th>
@@ -31,29 +33,33 @@
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
-                <tr>
+                <tr *ngFor="let report of reports">
                     <td>
                         <a [routerLink]="['/members/'+report.user]" class="report-name">
                             {{report.user}}
                         </a>
                     </td>
                     <td>{{report.reason | titlecase}}</td>
-                    <td>{{report.details}}</td>
-                    <td>{{report.sender}}</td>
+                    <td>{{report.details || "[No reason provided]"}}</td>
+                    <td>
+                        <a [routerLink]="['/members/'+report.sender]" class="report-name">
+                            {{report.sender}}
+                        </a>
+                    </td>
                     <td>{{report.createdAt | date:"short"}}</td>
                     <td style="border-right: solid;">{{displayStatus(report.status)}}</td>
                     <td>
-                        <button mat-icon-button matTooltip="Approve" style="color: green;">
+                        <button mat-icon-button (click)="approveReport(report.reportId)" matTooltip="Approve" style="color: green;">
                             <mat-icon>check</mat-icon>
                         </button>
-                        <button mat-icon-button matTooltip="Deny" style="color: red;">
+                        <button mat-icon-button (click)="denyReport(report.reportId)" matTooltip="Deny" style="color: red;">
                             <mat-icon>close</mat-icon>
                         </button>
                     </td>
                 </tr>
             </table>
 
-            <div style="padding-bottom: 40%;"></div>
+            <div style="padding-bottom: 30%;"></div>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>
