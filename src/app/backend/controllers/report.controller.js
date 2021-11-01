@@ -32,6 +32,8 @@ exports.updateOne = (request,response)=> {
     const id = request.params.id;
     console.log(request.body.toString());
 
+    // TODO: This doesn't work! Find a way to grab the variable without using
+    // request.body
     Report.findOneAndUpdate({reportId:id}, {status:request.body}).then(res=> {
         response.send(res);
     }).catch(error=> {
