@@ -1,5 +1,6 @@
 const db = require("../models");
 const Forum = db.forums;
+const ForumPost = db.posts;
 
 exports.createCategory = (request,response)=> {
     const category = new Forum({
@@ -72,15 +73,17 @@ exports.postToSubject = (request,response)=> {
     // Using Date.now() is NOT a guaranteed 100% unique ID as there is a small
     // chance that creating posts at the same exact time to the millisecond results
     // in the same ids.
-    const post = {
+    const post = new ForumPost({
         postId: curTime.now(),
         title: request.body.title,
         content: request.body.content,
         author: request.body.author,
         isArchived: false,
-        datePosted: curTime,
         comments:[]
-    };
+    });
+
+    // Save the post to the database
+    post.save(post);
 
     Forum.findOneAndUpdate(
         {$and:[
@@ -88,7 +91,7 @@ exports.postToSubject = (request,response)=> {
             {'subCategories':{$elemMatch:{'name':subCategory}}},
             {'subCategories.subjects':{$elemMatch:{'name':subject}}}
         ]},
-        {$push:{'subCategories.subjects.posts':post}}
+        {$push:{'subCategories.subjects.posts':post.postId}}
     ).then(data=> {
         response.send(data);
     }).catch(error=> {
@@ -96,20 +99,6 @@ exports.postToSubject = (request,response)=> {
             message:error.message || "An error occurred attempting to post to the subject"
         });
     });
-};
-
-exports.commentToPost = (request,response)=> {
-    const category = request.params.category;
-    const subCategory = request.params.subCategory;
-    const subject = request.params.subject;
-    const post = request.params.postId;
-    const comment = {
-        content: request.body.content,
-        username: request.body.username,
-        datePosted: new Date()
-    };
-
-
 };
 
 exports.retrieveAllCategories = (request,response)=> {

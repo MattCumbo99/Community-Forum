@@ -6,6 +6,7 @@ export interface ForumPost {
     author:string;
     content:string;
     isArchived:boolean;
-    datePosted:Date;
+    createdAt:Date;
+    updatedAt:Date;
     comments:Array<ForumComment>; 
 }

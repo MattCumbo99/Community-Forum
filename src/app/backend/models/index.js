@@ -15,5 +15,6 @@ db.bans = require("./ban.model")(mongoose);
 db.reports = require("./report.model")(mongoose);
 db.adminLogs = require("./adminlog.model")(mongoose);
 db.forums = require("./forums.model")(mongoose);
+db.posts = require("./forumpost.model")(mongoose);
 
 module.exports = db;
