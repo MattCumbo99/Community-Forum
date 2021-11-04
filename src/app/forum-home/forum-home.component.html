@@ -1,7 +1,26 @@
 <div>
     <h1 class="page-title">Forum List</h1>
-    <!--First category-->
-    <div class="block">
+    <div *ngFor="let category of categories">
+        <div class="block">
+            <div class="category-header">
+                <h2>{{category.name}}</h2>
+                <span *ngIf="category.description !== ''" style="padding: 10px;">
+                    {{category.description}}
+                </span>
+            </div>
+            <div class="sub-category-sections" *ngFor="let subcategory of category.subCategories">
+                <div class="sub-block">
+                    <h3>{{subcategory.name}}</h3>
+                    <div *ngIf="subcategory.description !== ''" class="sub-category-description">
+                        {{subcategory.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-bottom: 2%;"></div>
+    </div>
+    <!--Category template-->
+    <!-- <div class="block">
         <div class="category-header">
             <h2>Sample Category</h2>
         </div>
@@ -26,31 +45,5 @@
             </div>
         </div>
     </div>
-    &nbsp;
-    <!--Second category-->
-    <div class="block">
-        <div class="category-header">
-            <h2>Sample Category</h2>
-        </div>
-        <div class="sub-category-sections">
-            <div class="sub-block">
-                <h3>Sub-category 1</h3>
-                <div class="sub-category-description">
-                    Sub-category 1 description
-                </div>
-            </div>
-            <div class="sub-block">
-                <h3>Sub-category 2</h3>
-                <div class="sub-category-description">
-                    Sub-category 2 description
-                </div>
-            </div>
-            <div class="sub-block">
-                <h3>Sub-category 3</h3>
-                <div class="sub-category-description">
-                    Sub-category 3 description
-                </div>
-            </div>
-        </div>
-    </div>
+    &nbsp; -->
 </div>

@@ -1,9 +1,10 @@
-<div>
+<div *ngIf="currentUser.privilege >= 253">
     <mat-drawer-container hasBackdrop>
         <mat-drawer #drawer mode="over">
             <!--Sidenav contents-->
-            <button mat-menu-item>Reports</button>
-            <button mat-menu-item>Logged Actions</button>
+            <button type="button" mat-menu-item>Reports</button>
+            <button type="button" mat-menu-item>Logged Actions</button>
+            <button type="button" mat-menu-item>Forum Customization</button>
         </mat-drawer>
         <mat-drawer-content style="padding-left: 12%; padding-right: 12%;">
             <!--Page content-->
@@ -20,6 +21,31 @@
                     <mat-icon>home</mat-icon>
                 </button>
             </mat-toolbar>
+
+            <!--TEMPORARY FORM-->
+            <form #categoryRef="ngForm" (ngSubmit)="categorySubmit(categoryRef)">
+                <br>
+                <label>Category name:</label>
+                <input type="text" name="catname" ngModel>
+                <br>
+                <label>Description:</label>
+                <input type="text" name="catdesc" ngModel>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <form #subcatRef="ngForm" (ngSubmit)="subcatSubmit(subcatRef)">
+                <br>
+                <label>Category name:</label>
+                <input type="text" name="catname" ngModel>
+                <br>
+                <label>Sub-category name:</label>
+                <input type="text" name="subCatName" ngModel>
+                <br>
+                <label>Sub-category description:</label>
+                <input type="text" name="subCatDesc" ngModel>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
 
             <!--Reports table-->
             <h3>Reports</h3>

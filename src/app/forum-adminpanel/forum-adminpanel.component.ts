@@ -6,7 +6,9 @@ import { User } from '../backend/interfaces/user.interface';
 import { UserService } from '../backend/services/user.service';
 import { AdminlogService } from '../backend/services/adminlog.service';
 import { ReportService } from '../backend/services/report.service';
+import { ForumsService } from '../backend/services/forums.service';
 import { GlobalVariables } from '../common/global-variables';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-forum-adminpanel',
@@ -19,6 +21,7 @@ export class ForumAdminpanelComponent implements OnInit {
   reports:Array<ForumReport> = [];
 
   constructor(private titleService:Title, private userService:UserService, private adminlogService:AdminlogService,
+    private forumService:ForumsService,
     private reportService:ReportService, public router:Router, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
@@ -58,6 +61,22 @@ export class ForumAdminpanelComponent implements OnInit {
       default:
         return "Unknown status";
     }
+  }
+
+  categorySubmit(categoryRef:NgForm): void {
+    let catForm = categoryRef.value;
+
+    this.forumService.createCategory({name:catForm.catname, description:catForm.catdesc}).subscribe(()=> {
+      alert("Category created!");
+    });
+  }
+
+  subcatSubmit(subcatRef:NgForm): void {
+    let catForm = subcatRef.value;
+
+    this.forumService.addSubcategory(catForm.catname, {name:catForm.subCatName, description:catForm.subCatDesc}).subscribe(()=> {
+      alert("Sub-Category created!")
+    })
   }
 
   // Approve function

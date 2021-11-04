@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { GlobalVariables } from '../common/global-variables';
+import { ForumsService } from '../backend/services/forums.service';
+import { ForumCategory } from '../backend/interfaces/forumcategory.interface';
 
 @Component({
   selector: 'app-forum-home',
@@ -9,10 +11,17 @@ import { GlobalVariables } from '../common/global-variables';
 })
 export class ForumHomeComponent implements OnInit {
 
-  constructor(private titleService:Title, public globals:GlobalVariables) { }
+  categories:Array<ForumCategory> = [];
+
+  constructor(private titleService:Title, private forumsService:ForumsService, public globals:GlobalVariables) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.globals.websiteTitle);
+
+    // Initialize the categories
+    this.forumsService.getAllCategories().subscribe(data=> {
+      this.categories = data;
+    });
   }
 
 }
