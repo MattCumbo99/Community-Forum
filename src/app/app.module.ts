@@ -19,7 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ForumHomeComponent } from './forum-home/forum-home.component';
+import { ForumHomeComponent, DialogCreateCategory, DialogCreateSubcategory, DialogCreateSubject } from './forum-home/forum-home.component';
 import { ForumLoginComponent } from './forum-login/forum-login.component';
 import { ForumRegisterComponent } from './forum-register/forum-register.component';
 import { ForumMembersComponent } from './forum-members/forum-members.component';
@@ -35,16 +35,23 @@ import { ForumPostlistComponent } from './forum-postlist/forum-postlist.componen
 @NgModule({
   declarations: [
     AppComponent,
+
     ForumHomeComponent,
+    DialogCreateCategory,
+    DialogCreateSubcategory,
+    DialogCreateSubject,
+
     ForumLoginComponent,
     ForumRegisterComponent,
     ForumMembersComponent,
     ForumNotfoundComponent,
+
     ForumProfileComponent,
     DialogRoleChange,
     DialogBan,
     DialogUnban,
     DialogReport,
+
     ForumBansComponent,
     ForumEditprofileComponent,
     ForumAdminpanelComponent,

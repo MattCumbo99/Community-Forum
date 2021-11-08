@@ -1,29 +1,44 @@
 <div>
     <h1 class="page-title">Forum List</h1>
+
+    <!--Forum actions-->
+    <!--Admin functions-->
+    <div *ngIf="currentUser.privilege >= 255">
+        <button type="button" (click)="openDialogCategory()">
+            <mat-icon>edit</mat-icon>
+            Create category
+        </button>
+    </div>
+
+    <br>
+
+    <!--Category display-->
     <div *ngFor="let category of categories">
-        <div class="block">
-            <div class="category-header">
-                <h2>{{category.name}}</h2>
-                <span *ngIf="category.description !== ''" style="padding: 10px;">
-                    {{category.description}}
-                </span>
-            </div>
-            <div class="sub-category-sections" *ngFor="let subcategory of category.subCategories">
-                <div class="sub-block">
-                    <h3>{{subcategory.name}}</h3>
-                    <div *ngIf="subcategory.description !== ''" class="sub-category-description">
-                        {{subcategory.description}}
-                        <span *ngFor="let subject of subcategory.subjects">
-                            <button mat-menu-item style="width: 20%;">
-                                <mat-icon>forum</mat-icon>
-                                <span>{{subject.name}}</span>
-                            </button>    
-                        </span>
+        <button *ngIf="currentUser.privilege >= 255" type="button" (click)="openDialogSubcategory(category.name)">
+            <mat-icon>add</mat-icon>
+            Create Sub-Category for {{category.name}}
+        </button>
+        <mat-accordion>
+            <mat-expansion-panel expanded [hideToggle]="category.subCategories.length == 0">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="category-title">
+                            {{category.name}}
+                        </div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{category.description}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let subcategory of category.subCategories">
+                    <div class="subcategory-title">
+                        {{subcategory.name}}
                     </div>
+                    <span>{{subcategory.description}}</span>
                 </div>
-            </div>
-        </div>
-        <div style="padding-bottom: 2%;"></div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br>
     </div>
     <h3 *ngIf="categories.length == 0">No categories yet...</h3>
 </div>

@@ -1,0 +1,14 @@
+<div>
+    <h2>Create new category</h2>
+    <form #catRef="ngForm" (ngSubmit)="addCategory(catRef)" class="form-stylized">
+        <label class="form-label">Category name</label>
+        <input type="text" name="catname" autofocus ngModel>
+        <br><br>
+        <label class="form-label">Category description (optional)</label>
+        <input type="text" name="catdesc" ngModel>
+        <br><br>
+        <button type="submit" class="btn-primary">Submit</button>
+        <span style="padding-right: 50px;"></span>
+        <button type="button" class="btn-secondary" (click)="onNoClick()">Cancel</button>
+    </form>
+</div>

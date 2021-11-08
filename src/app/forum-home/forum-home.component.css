@@ -8,31 +8,12 @@
     padding-left: 10px;
 }
 
-.category-header {
-    border-style: solid;
-    border-color: transparent;
-    border-bottom-color: black;
-    background-color: lightgrey;
+.category-title {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 17px;
 }
 
-.sub-category-sections {
-    padding-top: 0px;
+.subcategory-title {
+    font-weight: bold;
 }
-
-.sub-category-description {
-    padding-left: 10px;
-    padding-bottom: 1%;
-}
-
-.sub-block {
-    border-style: solid;
-    border-color: transparent;
-    border-bottom-color: black;
-    border-width: thin;
-}
-
-.sub-block:hover {
-    cursor: pointer;
-    background-color: paleturquoise;
-}
-

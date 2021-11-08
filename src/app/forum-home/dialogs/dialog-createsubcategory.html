@@ -1,0 +1,14 @@
+<div>
+    <h2>Creating sub-category to {{data}}</h2>
+    <form #subRef="ngForm" (ngSubmit)="addSubcategory(subRef)" class="form-stylized">
+        <label class="form-label">Sub-Category name</label>
+        <input type="text" name="subname" ngModel>
+        <br><br>
+        <label class="form-label">Sub-Category description (optional)</label>
+        <input type="text" name="subdesc" ngModel>
+        <br><br>
+        <button type="submit" class="btn-primary">Submit</button>
+        <span style="padding-right: 50px;"></span>
+        <button type="button" (click)="onNoClick()" class="btn-secondary">Cancel</button>
+    </form>
+</div>
