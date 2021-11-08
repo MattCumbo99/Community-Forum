@@ -14,28 +14,29 @@
 
     <!--Category display-->
     <div *ngFor="let category of categories">
-        <button *ngIf="currentUser.privilege >= 255" type="button" (click)="openDialogSubcategory(category.name)">
+        <button *ngIf="currentUser.privilege >= 255" matTooltip="Create new sub-category" type="button" class="btn-subcategory" (click)="openDialogSubcategory(category.name)">
             <mat-icon>add</mat-icon>
-            Create Sub-Category for {{category.name}}
         </button>
         <mat-accordion>
             <mat-expansion-panel expanded [hideToggle]="category.subCategories.length == 0">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div class="category-title">
-                            {{category.name}}
-                        </div>
+                <mat-expansion-panel-header style="background-color: rgb(243, 243, 243);">
+                    <mat-panel-title class="category-title">
+                        <a [routerLink]="'/forums/'+category.name">{{category.name}}</a>
                     </mat-panel-title>
                     <mat-panel-description>
                         {{category.description}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <div *ngFor="let subcategory of category.subCategories">
-                    <div class="subcategory-title">
-                        {{subcategory.name}}
-                    </div>
-                    <span>{{subcategory.description}}</span>
-                </div>
+                <table>
+                    <tr class="subcategory-row" *ngFor="let subcategory of category.subCategories">
+                        <td class="subcategory">
+                            <div class="subcategory-title">
+                                {{subcategory.name}}
+                            </div>
+                            <span>{{subcategory.description}}</span>
+                        </td>
+                    </tr>
+                </table>
             </mat-expansion-panel>
         </mat-accordion>
         <br>

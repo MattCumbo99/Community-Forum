@@ -12,8 +12,22 @@
     padding: 5px;
     font-weight: bold;
     font-size: 17px;
+    cursor: pointer;
 }
 
+.subcategory {
+    padding: 10px;
+}
+.subcategory-row:hover {
+    background-color: peachpuff;
+}
 .subcategory-title {
     font-weight: bold;
+    padding-top: 10px;
+}
+
+.btn-subcategory {
+    border-bottom: transparent;
+    background-color: peachpuff;
+    cursor: pointer;
 }
