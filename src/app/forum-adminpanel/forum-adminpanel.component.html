@@ -22,7 +22,8 @@
                 </button>
             </mat-toolbar>
 
-            <!--TEMPORARY FORM-->
+            <!--TEMPORARY FORMS-->
+            <!--Category creation test-->
             <form #categoryRef="ngForm" (ngSubmit)="categorySubmit(categoryRef)">
                 <br>
                 <label>Category name:</label>
@@ -33,6 +34,7 @@
                 <br>
                 <button type="submit">Submit</button>
             </form>
+            <!--Sub-category creation test-->
             <form #subcatRef="ngForm" (ngSubmit)="subcatSubmit(subcatRef)">
                 <br>
                 <label>Category name:</label>
@@ -43,6 +45,23 @@
                 <br>
                 <label>Sub-category description:</label>
                 <input type="text" name="subCatDesc" ngModel>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <!--Subject creation test-->
+            <form #subjectRef="ngForm" (ngSubmit)="subjectSubmit(subjectRef)">
+                <br>
+                <label>Category name:</label>
+                <input type="text" name="catname" ngModel>
+                <br>
+                <label>Sub-category name:</label>
+                <input type="text" name="subCatName" ngModel>
+                <br>
+                <label>Subject name:</label>
+                <input type="text" name="subjectName" ngModel>
+                <br>
+                <label>Subject description:</label>
+                <input type="text" name="subjectDesc" ngModel>
                 <br>
                 <button type="submit">Submit</button>
             </form>

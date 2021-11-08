@@ -79,6 +79,14 @@ export class ForumAdminpanelComponent implements OnInit {
     })
   }
 
+  subjectSubmit(subjectRef:NgForm): void {
+    let subForm = subjectRef.value;
+
+    this.forumService.addSubject(subForm.catname, subForm.subCatName, {name:subForm.subjectName, description:subForm.subjectDesc}).subscribe(()=> {
+      alert("Subject created.");
+    })
+  }
+
   // Approve function
   approveReport(id:number): void {
     this.reportService.updateReportStatus(id, 2).subscribe(res=> {

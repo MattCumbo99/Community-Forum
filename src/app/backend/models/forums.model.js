@@ -4,7 +4,8 @@ module.exports = mongoose => {
         {
             name:String,
             description:String,
-            subCategories:Array
+            subCategories:Array,
+            posts:Array
         },
         { timestamps:false }
     );

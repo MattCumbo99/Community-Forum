@@ -9,9 +9,15 @@ import { ForumProfileComponent } from './forum-profile/forum-profile.component';
 import { ForumBansComponent } from './forum-bans/forum-bans.component';
 import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile.component';
 import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.component';
+import { ForumPost } from './backend/interfaces/forumpost.interface';
+import { ForumPostlistComponent } from './forum-postlist/forum-postlist.component';
+import { ForumPostComponent } from './forum-post/forum-post.component';
 
 const routes: Routes = [
   {path:"forums",redirectTo:"",pathMatch:"full"},
+  {path:"threads",redirectTo:"",pathMatch:"full"},
+  {path:"forums/:category", component:ForumPostlistComponent},
+  {path:"threads/:postId", component:ForumPostComponent},
   {path:"editprofile",component:ForumEditprofileComponent},
   {path:"adminpanel",component:ForumAdminpanelComponent},
   {path:"members",component:ForumMembersComponent},

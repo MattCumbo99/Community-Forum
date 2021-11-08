@@ -29,6 +29,8 @@ import { ForumProfileComponent, DialogRoleChange, DialogBan, DialogUnban, Dialog
 import { ForumBansComponent } from './forum-bans/forum-bans.component';
 import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile.component';
 import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.component';
+import { ForumPostComponent } from './forum-post/forum-post.component';
+import { ForumPostlistComponent } from './forum-postlist/forum-postlist.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.co
     DialogReport,
     ForumBansComponent,
     ForumEditprofileComponent,
-    ForumAdminpanelComponent
+    ForumAdminpanelComponent,
+    ForumPostComponent,
+    ForumPostlistComponent
   ],
   imports: [
     HttpClientModule,
