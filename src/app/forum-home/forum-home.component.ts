@@ -92,7 +92,7 @@ export class DialogCreateCategory {
 })
 export class DialogCreateSubcategory {
 
-  constructor(private forumService:ForumsService, 
+  constructor(private forumService:ForumsService, public globals:GlobalVariables,
     public dialogRef:MatDialogRef<DialogCreateSubcategory>, @Inject(MAT_DIALOG_DATA) public data:string) { }
 
   onNoClick(): void {
@@ -103,7 +103,7 @@ export class DialogCreateSubcategory {
   addSubcategory(subRef:NgForm): void {
     let subForm = subRef.value;
 
-    this.forumService.addSubcategory(this.data, {name:subForm.subname, description:subForm.subdesc}).subscribe(()=> {
+    this.forumService.addSubcategory(this.data, {name:subForm.subname, description:subForm.subdesc, minPostPrivilege:subForm.privilege}).subscribe(()=> {
       alert("Sub-category created!");
       window.location.reload();
     });

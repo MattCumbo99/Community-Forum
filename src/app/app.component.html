@@ -1,6 +1,6 @@
 <div>
   <!--Shown when the user is logged in-->
-  <div *ngIf="currentUser.username!==''" style="text-align: right; padding-right: 20%;">
+  <div *ngIf="currentUser.username!==''" class="info-login">
     <br>
 
     <!--Notifications-->
@@ -63,8 +63,9 @@
     </button>
   </div>
 
-  <hr *ngIf="router.url!=='/adminpanel'">
-
+  <hr *ngIf="currentUser.username===''">
+  <br *ngIf="currentUser.username!==''">
+  
   <!--Tabs-->
   <div *ngIf="router.url!=='/adminpanel'">
     <nav (click)="onLogin=false; onRegister=false;">

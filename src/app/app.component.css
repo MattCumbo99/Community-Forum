@@ -54,6 +54,12 @@
     font-size: 20px;
 }
 
+.info-login {
+    text-align: right; 
+    padding-right: 20%;
+    float: right;
+}
+
 .page-padding {
     padding-left: 20%;
     padding-right: 20%;

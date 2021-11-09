@@ -7,6 +7,15 @@
         <label class="form-label">Sub-Category description (optional)</label>
         <input type="text" name="subdesc" ngModel>
         <br><br>
+        <label class="form-label">Minimum posting privilege</label>
+        <select name="privilege" [ngModel]="1">
+            <option value="1">Member</option>
+            <option value="253">Moderator</option>
+            <option value="254">Admin</option>
+            <option value="255">Head Admin</option>
+            <option value="256">Owner</option>
+        </select>
+        <br><br>
         <button type="submit" class="btn-primary">Submit</button>
         <span style="padding-right: 50px;"></span>
         <button type="button" (click)="onNoClick()" class="btn-secondary">Cancel</button>

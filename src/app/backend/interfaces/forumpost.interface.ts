@@ -5,7 +5,7 @@ export interface ForumPost {
     title:string;
     author:string;
     content:string;
-    isArchived:boolean;
+    isLocked:boolean;
     stickied:boolean;
     createdAt:Date;
     updatedAt:Date;

@@ -27,7 +27,7 @@ export class ForumsService {
    * @param data Content of the subcategory
    * @returns The updated category
    */
-  addSubcategory(category:string, data:{name:string, description:string}): Observable<any> {
+  addSubcategory(category:string, data:{name:string, description:string, minPostPrivilege:number}): Observable<any> {
     return this.http.put(`${baseUrl}/${category}`, data);
   }
 

@@ -6,7 +6,8 @@ module.exports = mongoose => {
             title:String,
             author:String,
             content:String,
-            isArchived:Boolean,
+            isLocked:Boolean,
+            stickied:Boolean,
             comments:Array
         },
         { timestamps:true }

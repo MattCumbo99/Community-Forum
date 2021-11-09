@@ -4,7 +4,7 @@
     <!--Forum actions-->
     <!--Admin functions-->
     <div *ngIf="currentUser.privilege >= 255">
-        <button type="button" (click)="openDialogCategory()">
+        <button type="button" (click)="openDialogCategory()" class="btn-special">
             <mat-icon>edit</mat-icon>
             Create category
         </button>

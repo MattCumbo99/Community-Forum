@@ -63,30 +63,6 @@ export class ForumAdminpanelComponent implements OnInit {
     }
   }
 
-  categorySubmit(categoryRef:NgForm): void {
-    let catForm = categoryRef.value;
-
-    this.forumService.createCategory({name:catForm.catname, description:catForm.catdesc}).subscribe(()=> {
-      alert("Category created!");
-    });
-  }
-
-  subcatSubmit(subcatRef:NgForm): void {
-    let catForm = subcatRef.value;
-
-    this.forumService.addSubcategory(catForm.catname, {name:catForm.subCatName, description:catForm.subCatDesc}).subscribe(()=> {
-      alert("Sub-Category created!")
-    })
-  }
-
-  subjectSubmit(subjectRef:NgForm): void {
-    let subForm = subjectRef.value;
-
-    this.forumService.addSubject(subForm.catname, subForm.subCatName, {name:subForm.subjectName, description:subForm.subjectDesc}).subscribe(()=> {
-      alert("Subject created.");
-    })
-  }
-
   // Approve function
   approveReport(id:number): void {
     this.reportService.updateReportStatus(id, 2).subscribe(res=> {

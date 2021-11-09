@@ -24,6 +24,7 @@ exports.addSubcategory = (request,response)=> {
     const subCategory = {
         name: request.body.name,
         description: request.body.description,
+        minPostPrivilege: request.body.minPostPrivilege,
         subjects:[],
         posts:[]
     };
