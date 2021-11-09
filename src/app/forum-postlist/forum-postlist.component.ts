@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalVariables } from '../common/global-variables';
+import { Title } from '@angular/platform-browser';
+import { ForumsService } from '../backend/services/forums.service';
 
 @Component({
   selector: 'app-forum-postlist',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumPostlistComponent implements OnInit {
 
-  constructor() { }
+  constructor(public globals:GlobalVariables, private titleService:Title, private forumService:ForumsService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.globals.websiteTitle + " - List");
   }
 
 }

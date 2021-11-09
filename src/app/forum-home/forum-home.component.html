@@ -21,7 +21,7 @@
             <mat-expansion-panel expanded [hideToggle]="category.subCategories.length == 0">
                 <mat-expansion-panel-header style="background-color: rgb(243, 243, 243);">
                     <mat-panel-title class="category-title">
-                        <a [routerLink]="'/forums/'+category.name">{{category.name}}</a>
+                        {{category.name}}
                     </mat-panel-title>
                     <mat-panel-description>
                         {{category.description}}
@@ -31,7 +31,7 @@
                     <tr class="subcategory-row" *ngFor="let subcategory of category.subCategories">
                         <td class="subcategory">
                             <div class="subcategory-title">
-                                {{subcategory.name}}
+                                <a [routerLink]="'/forums/'+subcategory.name">{{subcategory.name}}</a>
                             </div>
                             <span>{{subcategory.description}}</span>
                         </td>

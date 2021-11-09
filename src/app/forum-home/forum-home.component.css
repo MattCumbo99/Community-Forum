@@ -25,6 +25,13 @@
     font-weight: bold;
     padding-top: 10px;
 }
+.subcategory-title a {
+    text-decoration: none;
+    color: currentColor;
+}
+.subcategory-title a:hover {
+    text-decoration: underline;
+}
 
 .btn-subcategory {
     border-bottom: transparent;
