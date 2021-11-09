@@ -51,6 +51,15 @@ export class ForumsService {
   }
 
   /**
+   * Gets a single category from the database.
+   * @param name The name of the category
+   * @returns ForumCategory object associated with the category name
+   */
+  getCategory(name:string): Observable<ForumCategory> {
+    return this.http.get<ForumCategory>(`${baseUrl}/${name}`);
+  }
+
+  /**
    * Creates a ForumPost object to its database along with categorizing 
    * it into a category's subcategory.
    * @param category Name of the category
