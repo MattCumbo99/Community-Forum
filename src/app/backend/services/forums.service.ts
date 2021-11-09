@@ -52,17 +52,6 @@ export class ForumsService {
 
   /**
    * Creates a ForumPost object to its database along with categorizing 
-   * it into the respective category.
-   * @param category Name of the category to put the forum post into
-   * @param data Content of the ForumPost
-   * @returns Updated forum category
-   */
-  addPostToCategory(category:string, data:{title:string, author:string, content:string}): Observable<any> {
-    return this.http.put(`${baseUrl}/post/${category}`, data);
-  }
-
-  /**
-   * Creates a ForumPost object to its database along with categorizing 
    * it into a category's subcategory.
    * @param category Name of the category
    * @param subcategory Name of the subcategory under the category param

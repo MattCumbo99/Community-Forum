@@ -6,8 +6,7 @@ exports.createCategory = (request,response)=> {
     const category = new Forum({
         name: request.body.name,
         description: request.body.description,
-        subCategories:[],
-        posts:[]
+        subCategories:[]
     });
 
     category.save(category).then(data=> {
@@ -66,35 +65,6 @@ exports.addSubject = (request,response)=> {
     });
 };
 
-exports.postToCategory = (request,response)=> {
-    const category = request.params.category;
-    // TODO: Change method of determining postId
-    const forumpost = new ForumPost({
-        postId: new Date().now(),
-        title: request.body.title,
-        author: request.body.author,
-        content: request.body.content,
-        isArchived: false,
-        stickied: false,
-        comments: []
-    });
-
-    // Save the post to the database
-    forumpost.save(forumpost);
-
-    // Push the post ID to the category's posts
-    Forum.findOneAndUpdate(
-        {name:category},
-        { $push:{'posts':forumpost.postId} }
-    ).then(data=> {
-        response.send(data);
-    }).catch(error=> {
-        response.status(500).send({
-            message:error.message || "An error occurred posting to category"
-        });
-    });
-};
-
 // Adds a new post and its postId to a subcategory
 exports.postToSubcategory = (request,response)=> {
     const category = request.params.category;
@@ -138,3 +108,14 @@ exports.retrieveAllCategories = (request,response)=> {
     });
 };
 
+exports.retrieveCategory = (request,response)=> {
+    const category = request.params.category;
+
+    Forum.findOne({'name':category}).then(data=> {
+        response.send(data);
+    }).catch(error=> {
+        response.status(500).send({
+            message:error.message || "Error retrieving category"
+        });
+    });
+};
