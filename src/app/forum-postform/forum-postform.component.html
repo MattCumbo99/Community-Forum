@@ -1,1 +1,12 @@
-<p>forum-postform works!</p>
+<div>
+    <h1 class="page-title">Post thread</h1>
+    <form #postRef="ngForm" (ngSubmit)="postThread(postRef)" class="form-stylized form-stylized--border">
+        <label class="form-label">Title</label>
+        <input type="text" name="postTitle" autofocus ngModel>
+        <br><br>
+        <textarea name="postContent" style="height: 300px;" ngModel></textarea>
+        <br><br>
+        <span style="padding-left: 89.4%;"></span>
+        <button type="submit" class="btn-primary">Post thread</button>
+    </form>
+</div>

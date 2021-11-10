@@ -68,7 +68,6 @@ exports.addSubject = (request,response)=> {
 
 // Adds a new post and its postId to a subcategory
 exports.postToSubcategory = (request,response)=> {
-    const category = request.params.category;
     const subcategoryPost = request.params.subcategory;
     // TODO: Change method of determining postId
     const forumpost = new ForumPost({
@@ -89,10 +88,7 @@ exports.postToSubcategory = (request,response)=> {
     // Find the category with the matching subcategory and push
     // the post id to the posts array
     Forum.findOneAndUpdate(
-        {$and:[
-            {'name':category},
-            {'subCategories':{$elemMatch:{'name':subcategory}}}
-        ]},
+        {'subCategories':{$elemMatch:{'name':subcategory}}},
         { $push:{'subCategories.$.posts':forumpost.postId} }
     ).then(data=> {
         response.send(data);
