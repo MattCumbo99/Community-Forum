@@ -31,6 +31,7 @@ import { ForumEditprofileComponent } from './forum-editprofile/forum-editprofile
 import { ForumAdminpanelComponent } from './forum-adminpanel/forum-adminpanel.component';
 import { ForumPostComponent } from './forum-post/forum-post.component';
 import { ForumPostlistComponent } from './forum-postlist/forum-postlist.component';
+import { ForumPostformComponent } from './forum-postform/forum-postform.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ForumPostlistComponent } from './forum-postlist/forum-postlist.componen
     ForumEditprofileComponent,
     ForumAdminpanelComponent,
     ForumPostComponent,
-    ForumPostlistComponent
+    ForumPostlistComponent,
+    ForumPostformComponent
   ],
   imports: [
     HttpClientModule,

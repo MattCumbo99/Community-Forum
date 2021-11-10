@@ -1,6 +1,6 @@
 <div>
     <h1 class="page-title">{{subCategoryTitle}}</h1>
-    <button type="button" class="btn-special" style="float: right;">
+    <button type="button" [routerLink]="'/forums/'+subCategoryTitle+'/post-thread'" class="btn-special" style="float: right;">
         <mat-icon>edit</mat-icon>
         Post thread...
     </button>

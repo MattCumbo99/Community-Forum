@@ -28,22 +28,21 @@ export class ForumPostlistComponent implements OnInit {
 
       // Search the database for the category
       this.forumService.getCategoryBySubcategory(this.subCategoryTitle).subscribe(data=> {
+        if (!data) {
+          this.router.navigateByUrl("/error");
+          return;
+        }
+
         // Get the index of the subcategory by its name
         const pos = data.subCategories.map(function(e) { return e.name; }).indexOf(this.subCategoryTitle);
 
-        if (pos !== -1) {
-          // Push each forum post corresponding to the ids in the array
-          // and into the usable variable
-          data.subCategories[pos].posts.forEach(element=> {
-            this.forumPostService.getPost(element).subscribe(postData=> {
-              this.subCategoryPosts.push(postData);
-            });
+        // Push each forum post corresponding to the ids in the array
+        // and into the usable variable
+        data.subCategories[pos].posts.forEach(element=> {
+          this.forumPostService.getPost(element).subscribe(postData=> {
+            this.subCategoryPosts.push(postData);
           });
-        }
-        // Subcategory does not exist
-        else {
-          this.router.navigateByUrl("/error");
-        }
+        });
       },
       error=> {
         this.router.navigateByUrl("/error");
