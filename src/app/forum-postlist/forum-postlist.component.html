@@ -1,6 +1,8 @@
 <div>
     <span>
-        
+        <a routerLink="">Forums</a>
+        &rightarrow;
+        <a routerLink="">{{categoryName}}</a>
     </span>
     <h1 class="page-title">{{subCategoryName}}</h1>
     <button type="button" [routerLink]="'/forums/'+subCategoryName+'/post-thread'" class="btn-special" style="float: right;">

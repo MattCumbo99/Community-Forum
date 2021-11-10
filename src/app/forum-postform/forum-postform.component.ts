@@ -30,8 +30,15 @@ export class ForumPostformComponent implements OnInit {
     let subvars = this.router.url.split("/");
     subvars.pop();
     subvars.splice(0, 2);
+    let subname = subvars.join();
 
-    this.subCategoryName = subvars.join();
+    // When the subcategory contains spaces, modify it from the url
+    if (subname.includes("%20")) {
+      subname = subname.split("%20").join();
+      subname = subname.replace(/,/g, ' ');
+    }
+
+    this.subCategoryName = subname;
 
     // Check if the sub category name is valid
     this.forumService.getCategoryBySubcategory(this.subCategoryName).subscribe(data=> {

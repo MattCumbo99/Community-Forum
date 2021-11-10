@@ -33,7 +33,6 @@ export class ForumPostlistComponent implements OnInit {
     if (subname.includes("%20")) {
       subname = subname.split("%20").join();
       subname = subname.replace(/,/g, ' ');
-      console.log(subname);
     }
 
     this.subCategoryName = subname;
