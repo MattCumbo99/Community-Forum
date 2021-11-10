@@ -69,13 +69,15 @@ exports.addSubject = (request,response)=> {
 // Adds a new post and its postId to a subcategory
 exports.postToSubcategory = (request,response)=> {
     const category = request.params.category;
-    const subcategory = request.params.subcategory;
+    const subcategoryPost = request.params.subcategory;
     // TODO: Change method of determining postId
     const forumpost = new ForumPost({
         postId: new Date().now(),
         title: request.body.title,
         author: request.body.author,
         content: request.body.content,
+        subcategory: subcategoryPost,
+        subject: "",
         isArchived: false,
         stickied: false,
         comments: []
@@ -84,6 +86,8 @@ exports.postToSubcategory = (request,response)=> {
     // Save the post to the database
     forumpost.save(forumpost);
 
+    // Find the category with the matching subcategory and push
+    // the post id to the posts array
     Forum.findOneAndUpdate(
         {$and:[
             {'name':category},

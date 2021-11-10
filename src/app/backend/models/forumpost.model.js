@@ -6,6 +6,8 @@ module.exports = mongoose => {
             title:String,
             author:String,
             content:String,
+            subcategory:String,
+            subject:String,
             isLocked:Boolean,
             stickied:Boolean,
             comments:Array
