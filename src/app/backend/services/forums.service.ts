@@ -76,7 +76,7 @@ export class ForumsService {
    * @param data Content of the ForumPost
    * @returns Updated forum category
    */
-  addPostToSubcategory(subcategory:string, data:{title:string, author:string, content:string}): Observable<any> {
-    return this.http.put(`${baseUrl}/post/${subcategory}`, data);
+  addPostToSubcategory(category:string, subcategory:string, data:{postId:number}): Observable<any> {
+    return this.http.put(`${baseUrl}/post/${category}/${subcategory}`, data);
   }
 }

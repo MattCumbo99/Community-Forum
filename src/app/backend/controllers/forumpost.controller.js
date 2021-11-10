@@ -1,6 +1,29 @@
 const db = require("../models");
 const ForumPost = db.posts;
 
+exports.createPost = (request,response)=> {
+    // TODO: Change method of determining postId
+    const forumpost = new ForumPost({
+        postId: request.body.postId,
+        title: request.body.title,
+        author: request.body.author,
+        content: request.body.content,
+        subcategory: request.body.subcategory,
+        subject: "",
+        isArchived: false,
+        stickied: false,
+        comments: []
+    });
+
+    forumpost.save(forumpost).then(data=> {
+        response.send(data);
+    }).catch(error=> {
+        response.status(500).send({
+            message:error.message || "Error adding post to database"
+        });
+    });
+};
+
 exports.addComment = (request,response)=> {
     const id = request.params.id;
     const comment = {

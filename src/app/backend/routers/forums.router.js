@@ -6,7 +6,7 @@ module.exports = app => {
 
     router.put("/:category", forums.addSubcategory);
     router.put("/:category/:subCategory", forums.addSubject);
-    router.put("/post/:subcategory", forums.postToSubcategory);
+    router.put("/post/:category/:subcategory", forums.postToSubcategory);
 
     router.get("", forums.retrieveAllCategories);
     router.get("/:category", forums.retrieveCategory);
