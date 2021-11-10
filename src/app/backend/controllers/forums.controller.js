@@ -124,3 +124,17 @@ exports.retrieveCategory = (request,response)=> {
         });
     });
 };
+
+exports.retrieveSubcategory = (request,response)=> {
+    const subcategory = request.params.subcategory;
+
+    Forum.findOne(
+        {'subCategories':{$elemMatch:{'name':subcategory}}}
+    ).then(data=> {
+        response.send(data);
+    }).catch(error=> {
+        response.status(500).send({
+            message:error.message || "Error retrieving subcategory"
+        });
+    });
+};

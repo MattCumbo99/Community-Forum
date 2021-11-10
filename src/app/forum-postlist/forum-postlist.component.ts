@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ForumsService } from '../backend/services/forums.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ForumPost } from '../backend/interfaces/forumpost.interface';
+import { ForumpostService } from '../backend/services/forumpost.service';
 
 @Component({
   selector: 'app-forum-postlist',
@@ -17,7 +18,7 @@ export class ForumPostlistComponent implements OnInit {
   subCategoryPosts:Array<ForumPost> = [];
 
   constructor(public globals:GlobalVariables, private router:Router, private titleService:Title, 
-    private forumService:ForumsService, private route:ActivatedRoute) { }
+    private forumService:ForumsService, private forumPostService:ForumpostService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     const catTitle = this.router.url.split('/').pop();
@@ -26,17 +27,26 @@ export class ForumPostlistComponent implements OnInit {
       this.subCategoryTitle = catTitle.split("%20").join(" ");
 
       // Search the database for the category
-      this.forumService.getAllCategories().subscribe(catData=> {
-        // Go through each category, looking at the names of each 
-        // of its sub-categories until it finds a match
-        let postIDs = Array<string>();
-        catData.forEach(element=> {
-          element.subCategories.forEach(postElement=> {
-            if (postElement.name === this.subCategoryTitle) {
-              postIDs = postElement.posts;
-            }
-          })
-        });
+      this.forumService.getCategoryBySubcategory(this.subCategoryTitle).subscribe(data=> {
+        // Get the index of the subcategory by its name
+        const pos = data.subCategories.map(function(e) { return e.name; }).indexOf(this.subCategoryTitle);
+
+        if (pos !== -1) {
+          // Push each forum post corresponding to the ids in the array
+          // and into the usable variable
+          data.subCategories[pos].posts.forEach(element=> {
+            this.forumPostService.getPost(element).subscribe(postData=> {
+              this.subCategoryPosts.push(postData);
+            });
+          });
+        }
+        // Subcategory does not exist
+        else {
+          this.router.navigateByUrl("/error");
+        }
+      },
+      error=> {
+        this.router.navigateByUrl("/error");
       });
 
     }

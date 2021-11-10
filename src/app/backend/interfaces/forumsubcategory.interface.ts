@@ -5,5 +5,5 @@ export interface ForumSubcategory {
     description:string;
     minPostPrivilege:number;
     subjects:Array<ForumSubject>;
-    posts:Array<string>;
+    posts:Array<number>;
 }

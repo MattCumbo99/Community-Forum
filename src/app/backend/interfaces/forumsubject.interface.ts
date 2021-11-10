@@ -1,5 +1,5 @@
 export interface ForumSubject {
     name:string;
     description:string;
-    posts:Array<string>;
+    posts:Array<number>;
 }

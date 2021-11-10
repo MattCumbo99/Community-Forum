@@ -60,6 +60,15 @@ export class ForumsService {
   }
 
   /**
+   * Gets the category from the database that contains the subcategory.
+   * @param name Name of the subcategory
+   * @returns ForumCategory that contains the subcategory
+   */
+  getCategoryBySubcategory(name:string): Observable<ForumCategory> {
+    return this.http.get<ForumCategory>(`${baseUrl}/subcategory/${name}`);
+  }
+
+  /**
    * Creates a ForumPost object to its database along with categorizing 
    * it into a category's subcategory.
    * @param category Name of the category

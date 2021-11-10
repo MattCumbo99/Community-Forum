@@ -10,6 +10,7 @@ module.exports = app => {
 
     router.get("", forums.retrieveAllCategories);
     router.get("/:category", forums.retrieveCategory);
+    router.get("/subcategory/:subcategory", forums.retrieveSubcategory);
 
     app.use("/api/forums", router);
 };
