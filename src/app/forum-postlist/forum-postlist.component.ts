@@ -14,45 +14,55 @@ import { ForumpostService } from '../backend/services/forumpost.service';
 export class ForumPostlistComponent implements OnInit {
 
   // Name of the sub-category
-  subCategoryTitle:string = "";
+  subCategoryName:string = "";
+  // Name of the category containing the sub-category
+  categoryName:string = "";
+  // Content of the sub-category's posts
   subCategoryPosts:Array<ForumPost> = [];
 
   constructor(public globals:GlobalVariables, private router:Router, private titleService:Title, 
     private forumService:ForumsService, private forumPostService:ForumpostService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    const catTitle = this.router.url.split('/').pop();
-    if (catTitle != undefined) {
-      // When the category has spaces, parse the url codes
-      this.subCategoryTitle = catTitle.split("%20").join(" ");
+    // Convert the url into a string that which we can identify the subcategory name
+    let subvars = this.router.url.split("/");
+    subvars.splice(0, 2);
+    let subname = subvars.join();
 
-      // Search the database for the category
-      this.forumService.getCategoryBySubcategory(this.subCategoryTitle).subscribe(data=> {
-        if (!data) {
-          this.router.navigateByUrl("/error");
-          return;
-        }
-
-        // Get the index of the subcategory by its name
-        const pos = data.subCategories.map(function(e) { return e.name; }).indexOf(this.subCategoryTitle);
-
-        // Push each forum post corresponding to the ids in the array
-        // and into the usable variable
-        data.subCategories[pos].posts.forEach(element=> {
-          this.forumPostService.getPost(element).subscribe(postData=> {
-            this.subCategoryPosts.push(postData);
-          });
-        });
-      },
-      error=> {
-        this.router.navigateByUrl("/error");
-      });
-
+    // When the subcategory contains spaces, modify it from the url
+    if (subname.includes("%20")) {
+      subname = subname.split("%20").join();
+      subname = subname.replace(/,/g, ' ');
+      console.log(subname);
     }
 
-    // TODO: verify the sub-category name exists
+    this.subCategoryName = subname;
 
-    this.titleService.setTitle(this.globals.websiteTitle + " - " + this.subCategoryTitle);
+    // Search the database for the category
+    this.forumService.getCategoryBySubcategory(this.subCategoryName).subscribe(data=> {
+      if (!data) {
+        this.router.navigateByUrl("/error");
+        return;
+      }
+      this.categoryName = data.name;
+
+      // Get the index of the subcategory by its name
+      const pos = data.subCategories.map(function(e) { return e.name; }).indexOf(this.subCategoryName);
+
+      // Push each forum post corresponding to the ids in the array
+      // and into the usable variable
+      data.subCategories[pos].posts.forEach(element=> {
+        this.forumPostService.getPost(element).subscribe(postData=> {
+          this.subCategoryPosts.push(postData);
+        });
+      });
+    },
+    error=> {
+      console.log(error);
+      this.router.navigateByUrl("/error");
+    });
+
+    this.titleService.setTitle(this.globals.websiteTitle + " - " + this.subCategoryName);
   }
 
 }
