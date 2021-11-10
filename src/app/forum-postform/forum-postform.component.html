@@ -1,4 +1,11 @@
 <div>
+    <span>
+        <a routerLink="">Forums</a>
+        &rightarrow; 
+        <a routerLink="">{{categoryName}}</a>
+        &rightarrow; 
+        <a [routerLink]="'/forums/'+subCategoryName">{{subCategoryName}}</a>
+    </span>
     <h1 class="page-title">Post thread</h1>
     <form #postRef="ngForm" (ngSubmit)="postThread(postRef)" class="form-stylized form-stylized--border">
         <label class="form-label">Title</label>
