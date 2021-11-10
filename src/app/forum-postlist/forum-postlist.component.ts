@@ -52,7 +52,7 @@ export class ForumPostlistComponent implements OnInit {
       // and into the usable variable
       data.subCategories[pos].posts.forEach(element=> {
         this.forumPostService.getPost(element).subscribe(postData=> {
-          this.subCategoryPosts.push(postData);
+          this.subCategoryPosts.unshift(postData);
         });
       });
     },

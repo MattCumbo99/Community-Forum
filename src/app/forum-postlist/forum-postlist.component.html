@@ -10,4 +10,17 @@
         Post thread...
     </button>
     <h3 *ngIf="subCategoryPosts.length === 0">No posts yet...</h3>
+    <table class="post-table">
+        <tr *ngFor="let post of subCategoryPosts">
+            <td>
+                <div>
+                    {{post.title}}
+                </div>
+                <div>
+                    {{post.author}} &bullet; {{globals.getNiceTime(post.createdAt.toString())}}
+                </div>
+            </td>
+            <td>Replies: {{post.comments.length}}</td>
+        </tr>
+    </table>
 </div>

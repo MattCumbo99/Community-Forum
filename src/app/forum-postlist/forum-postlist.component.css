@@ -1,0 +1,9 @@
+.post-table {
+    width: 100%;
+    padding-top: 5%;
+}
+.post-table td {
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+}

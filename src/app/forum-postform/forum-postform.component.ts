@@ -50,15 +50,16 @@ export class ForumPostformComponent implements OnInit {
     });
 
     // Get user details
-    this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
-      this.currentUser = data;
-
-      // Navigate to login screen if the user is not logged in
-      if (this.currentUser === this.globals.defaultUser) {
-        this.router.navigateByUrl("/login");
-        return;
-      }
-    });
+    const uname = this.globals.getCurrentUserDetails();
+    if (uname !== "") {
+      this.userService.getUser(this.globals.getCurrentUserDetails()).subscribe(data=> {
+        this.currentUser = data;
+      });
+    }
+    else {
+      this.router.navigateByUrl("/login");
+      return;
+    }
 
     this.titleService.setTitle("Post thread | " + this.globals.websiteTitle);
   }
