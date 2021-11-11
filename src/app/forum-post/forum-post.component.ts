@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ForumPost } from '../backend/interfaces/forumpost.interface';
 import { User } from '../backend/interfaces/user.interface';
 import { ForumComment } from '../backend/interfaces/forumcomment.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-forum-post',
@@ -18,6 +19,8 @@ export class ForumPostComponent implements OnInit {
   // Post data
   postData:any;
   postUser:User = this.globals.defaultUser;
+  // Current user
+  currentUser:User = this.globals.defaultUser;
 
   constructor(public globals:GlobalVariables, private titleService:Title, private userService:UserService,
     private router:Router, private forumPostService:ForumpostService) { }
@@ -27,6 +30,7 @@ export class ForumPostComponent implements OnInit {
     const thNumber = this.router.url.split("/").pop();
 
     if (thNumber != undefined) {
+      // Convert the thread string to a readable number
       const threadId:number = +thNumber;
 
       // Get the post data from the corresponding thread id
@@ -41,6 +45,19 @@ export class ForumPostComponent implements OnInit {
 
       });
     }
+
+    // Get the current logged in user details
+    const logName = this.globals.getCurrentUserDetails();
+    
+    if (logName !== "") {
+      this.userService.getUser(logName).subscribe(data=> {
+        this.currentUser = data;
+      });
+    }
+  }
+
+  makeComment(commentRef:NgForm): void {
+    
   }
 
 }

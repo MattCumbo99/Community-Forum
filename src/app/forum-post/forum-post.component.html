@@ -40,14 +40,28 @@
             </tr>
 
             <!--Comment post form-->
-            <tr>
+            <tr *ngIf="currentUser.username !== ''">
                 <td class="post-author">
-                    <img [src]="globals.defaultUser.pfpUrl" class="post-pfp">
+                    <img [src]="currentUser.pfpUrl" class="post-pfp">
                 </td>
+                <!--Actual form-->
                 <td>
-
+                    <form #commentRef="ngForm" (ngSubmit)="makeComment(commentRef)" class="form-stylized" style="padding: 15px;">
+                        <textarea name="reply" placeholder="Write your reply..." value="Write your reply..." ngModel></textarea>
+                        <br><br>
+                        <button type="submit" class="btn-primary">
+                            <mat-icon>reply</mat-icon>
+                            Post reply
+                        </button>
+                    </form>
                 </td>
             </tr>
         </table>
+        
+        <!--User must be logged in to comment-->
+        <div *ngIf="currentUser.privilege==0" class="msg-login-required" style="text-align: center;">
+            <mat-icon>lock</mat-icon>
+            You must be logged in to comment
+        </div>
     </div>
 </div>

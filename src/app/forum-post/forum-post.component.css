@@ -10,16 +10,20 @@
 
 .post-table {
     width: 100%;
-    border-style: solid;
-    border-color: black;
-    border-collapse: collapse;
+    display: table;
+    /*border-style: solid;
+    border-color: black;*/
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+.post-table td {
+    border: 2px solid black;
 }
 
 .post-author {
     width: 10%;
     padding: 30px;
     text-align: center;
-    border-right: solid;
     background-color: rgb(242, 242, 242);
 }
 

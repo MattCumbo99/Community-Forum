@@ -81,6 +81,11 @@ html * {
     padding: 8px;
     cursor: pointer;
 }
+.btn-primary mat-icon {
+    vertical-align: middle;
+    transform: scale(0.75);
+    padding-right: 3px;
+}
 .btn-primary:disabled {
     background-color: lightgrey;
     color: gray;
