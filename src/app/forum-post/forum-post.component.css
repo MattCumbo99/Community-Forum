@@ -1,0 +1,40 @@
+.post-pfp {
+    width: 100%;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-table {
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
+}
+
+.post-author {
+    width: 10%;
+    padding: 30px;
+    text-align: center;
+    border-right: solid;
+    background-color: rgb(242, 242, 242);
+}
+
+.post-content {
+    padding: 15px;
+    padding-top: 3px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.text-info {
+    color: grey;
+    font-size: 14px;
+}
+.text-content {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}

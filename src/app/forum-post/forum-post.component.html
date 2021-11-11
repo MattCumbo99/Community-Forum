@@ -1,1 +1,53 @@
-<p>forum-post works!</p>
+<div>
+    <h1 class="page-title">{{postData.title}}</h1>
+
+    <!--Information about the thread that is pinned to the top-->
+    <div style="padding-bottom: 6%;">
+        {{postData.author}} &bullet; {{globals.getNiceTime(postData.createdAt.toString())}}
+    </div>
+
+    <!--Post contents-->
+    <div>
+        <table class="post-table">
+            <tr>
+                <!--Poster information-->
+                <td class="post-author">
+                    <img [src]="postUser.pfpUrl" class="post-pfp">
+                    <div>{{postData.author}}</div>
+                    <div>{{globals.getRoleName(postUser.privilege)}}</div>
+                </td>
+
+                <!--Post content-->
+                <td class="post-content">
+                    <div class="text-info">{{globals.getNiceTime(postData.createdAt.toString())}}</div>
+
+                    <div class="text-content">
+                        {{postData.content}}
+                    </div>
+                    <hr *ngIf="postUser.signature !== ''">
+                    {{postUser.signature}}
+                </td>
+            </tr>
+            <tr *ngFor="let comment of postData.comments">
+                <!--Comment author-->
+                <td>
+
+                </td>
+                <!--Comment content-->
+                <td>
+
+                </td>
+            </tr>
+
+            <!--Comment post form-->
+            <tr>
+                <td class="post-author">
+                    <img [src]="globals.defaultUser.pfpUrl" class="post-pfp">
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

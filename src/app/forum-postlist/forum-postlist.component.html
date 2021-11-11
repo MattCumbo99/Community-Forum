@@ -14,7 +14,7 @@
         <tr *ngFor="let post of subCategoryPosts">
             <td>
                 <div>
-                    {{post.title}}
+                    <a [routerLink]="'/threads/'+post.postId">{{post.title}}</a>
                 </div>
                 <div>
                     {{post.author}} &bullet; {{globals.getNiceTime(post.createdAt.toString())}}
