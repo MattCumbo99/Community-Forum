@@ -113,10 +113,15 @@
         <tr *ngFor="let comment of profileComments">
             <!--Comment content-->
             <td class="profile-comment-userdata">
-                <img [src]="comment.user.pfpUrl" [routerLink]="['/members/'+comment.user.username]" class="img-profile-comment">
+                <a [routerLink]="'/members/'+comment.user.username">
+                    <img [src]="comment.user.pfpUrl" class="img-profile-comment">
+                </a>
             </td>
             <td style="padding-left: 20px;">
-                {{comment.user.username}} &bullet; {{globals.getNiceTime(comment.postDate.toString())}}
+                <a [routerLink]="'/members/'+comment.user.username" class="magic-link">
+                    {{comment.user.username}}
+                </a>
+                &bullet; {{globals.getNiceTime(comment.postDate.toString())}}
                 <br>
                 {{comment.content}}
             </td>
