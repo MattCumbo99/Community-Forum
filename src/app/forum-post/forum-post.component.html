@@ -38,14 +38,33 @@
                     {{postUser.signature}}
                 </td>
             </tr>
-            <tr *ngFor="let comment of postData.comments">
+            <!--Comment section-->
+            <tr *ngFor="let comment of postComments">
                 <!--Comment author-->
-                <td>
-
+                <td class="post-author">
+                    <a [routerLink]="'/members/'+comment.user.username" class="post-pfp">
+                        <img [src]="comment.user.pfpUrl" class="post-pfp">
+                    </a> 
+                    <div>
+                        <a [routerLink]="'/members/'+comment.user.username" class="magic-link">
+                            {{comment.user.username}}
+                        </a>
+                    </div>
+                    <div>
+                        {{globals.getRoleName(comment.user.privilege)}}
+                    </div>
                 </td>
                 <!--Comment content-->
-                <td>
+                <td class="post-content">
+                    <div class="text-info">
+                        {{globals.getNiceTime(comment.datePosted.toString())}}
+                    </div>
 
+                    <div class="text-content">
+                        {{comment.content}}
+                    </div>
+                    <hr *ngIf="comment.user.signature !== ''">
+                    {{comment.user.signature}}
                 </td>
             </tr>
 
@@ -76,4 +95,5 @@
             You must be logged in to comment
         </div>
     </div>
+    <div style="padding-bottom: 10%;"></div>
 </div>

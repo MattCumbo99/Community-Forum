@@ -60,6 +60,13 @@
     float: right;
 }
 
+.main-tabs {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 40px;
+}
+
 .page-padding {
     padding-left: 20%;
     padding-right: 20%;

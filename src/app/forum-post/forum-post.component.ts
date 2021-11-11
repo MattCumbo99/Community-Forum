@@ -21,6 +21,12 @@ export class ForumPostComponent implements OnInit {
   postUser:User = this.globals.defaultUser;
   // Current user
   currentUser:User = this.globals.defaultUser;
+  // Details of the post contents
+  postComments:Array<{
+    user:User,
+    content:string,
+    datePosted:Date
+  }> = [];
 
   constructor(public globals:GlobalVariables, private titleService:Title, private userService:UserService,
     private router:Router, private forumPostService:ForumpostService) { }
@@ -42,6 +48,21 @@ export class ForumPostComponent implements OnInit {
         this.userService.getUser(data.author).subscribe(userData=> {
           this.postUser = userData;
         });
+        
+        // Initialize the comments
+        data.comments.forEach(element=> {
+          // Get the details of the user first
+          this.userService.getUser(element.username).subscribe(commentUserData=> {
+            // Create the comment object
+            const commentObj = {
+              user: commentUserData,
+              content: element.content,
+              datePosted: element.datePosted
+            };
+            // Push it to the comments array
+            this.postComments.push(commentObj);
+          });
+        });
 
       });
     }
@@ -56,8 +77,19 @@ export class ForumPostComponent implements OnInit {
     }
   }
 
+  // Comment submission function
   makeComment(commentRef:NgForm): void {
-    
+    let commentForm = commentRef.value;
+    // Create the comment object
+    const commentObj = {
+      content: commentForm.reply,
+      username: this.currentUser.username
+    };
+
+    // Add it to the post in the database
+    this.forumPostService.addComment(this.postData.postId, commentObj).subscribe(()=> {
+      window.location.reload();
+    });
   }
 
 }
