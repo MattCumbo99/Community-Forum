@@ -25,6 +25,17 @@ html * {
     padding: 10px;
 }
 
+.magic-link {
+    color: black;
+    text-decoration: none;
+}
+.magic-link:hover {
+    text-decoration: underline;
+    color: darkslateblue;
+    cursor: pointer;
+    border-color: black;
+}
+
 .form-stylized {
     font-size: 18px;
 }

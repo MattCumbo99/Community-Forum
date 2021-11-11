@@ -3,7 +3,11 @@
 
     <!--Information about the thread that is pinned to the top-->
     <div style="padding-bottom: 6%;">
-        {{postData.author}} &bullet; {{globals.getNiceTime(postData.createdAt.toString())}}
+        <a [routerLink]="'/members/'+postData.author" class="magic-link">
+            {{postData.author}}
+        </a>
+        &bullet; 
+        {{globals.getNiceTime(postData.createdAt.toString())}}
     </div>
 
     <!--Post contents-->
@@ -12,8 +16,14 @@
             <tr>
                 <!--Poster information-->
                 <td class="post-author">
-                    <img [src]="postUser.pfpUrl" class="post-pfp">
-                    <div>{{postData.author}}</div>
+                    <a [routerLink]="'/members/'+postData.author" class="post-pfp">
+                        <img [src]="postUser.pfpUrl" class="post-pfp">
+                    </a> 
+                    <div>
+                        <a [routerLink]="'/members/'+postData.author" class="magic-link">
+                            {{postData.author}}
+                        </a>
+                    </div>
                     <div>{{globals.getRoleName(postUser.privilege)}}</div>
                 </td>
 
@@ -42,7 +52,9 @@
             <!--Comment post form-->
             <tr *ngIf="currentUser.username !== ''">
                 <td class="post-author">
-                    <img [src]="currentUser.pfpUrl" class="post-pfp">
+                    <a [routerLink]="'/members/'+currentUser.username" class="post-pfp">
+                        <img [src]="currentUser.pfpUrl" class="post-pfp">
+                    </a>
                 </td>
                 <!--Actual form-->
                 <td>
@@ -57,7 +69,7 @@
                 </td>
             </tr>
         </table>
-        
+
         <!--User must be logged in to comment-->
         <div *ngIf="currentUser.privilege==0" class="msg-login-required" style="text-align: center;">
             <mat-icon>lock</mat-icon>
